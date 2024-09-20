@@ -1,0 +1,14 @@
+@import './top.scss';
+@import './important.scss';
+@import './marquee.scss';
+@import './news.scss';
+
+.main {
+    padding: 32px 0 64px;
+    background: $bg_color_secondary;
+    font-family: "Racama";
+
+    @media screen and (max-width: 768px) {
+        padding: 32px 0;
+    }
+}

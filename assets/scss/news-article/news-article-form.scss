@@ -1,0 +1,73 @@
+.news-article-form {
+    background: $bg_color_main;
+    padding: 16px 32px;
+    border-radius: 4px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
+    
+    &__label {
+        margin: 0 0 16px 0;
+        font-size: 16px;
+        display: inline-block;
+    }
+
+    &__textarea {
+        width: 100%;
+        padding: 12px;
+        border: 1px solid $txt_secondary;
+        border-radius: 4px;
+        background-color: $txt_secondary;
+        color: $bg_color_main;
+        font-size: 16px;
+        box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.1);
+        resize: vertical;
+        transition: border 0.3s ease, box-shadow 0.3s ease;
+        margin: 0 0 16px 0;
+
+        &::placeholder {
+            display: none;
+        }
+
+        &:hover {
+            border-color: #888;
+        }
+
+        &:focus {
+            border-color: $header_hover_color;
+            box-shadow: 0 0 5px rgba(2, 71, 173, 0.5);
+            outline: none;
+            background-color: $txt_color;
+        }
+    }
+
+    &__button {
+        position: relative;
+        display: inline-block;
+        overflow: hidden;
+        font-size: 18px;
+        padding: 8px 16px;
+        width: 100%;
+        max-width: 140px;
+        font-weight: 700;
+        text-transform: uppercase;
+        z-index: 2;
+        cursor: pointer;
+
+        &:hover {
+            &::before {
+                width: 100%;
+            }
+        }
+
+        &::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 0;
+            height: 100%;
+            background: $header_hover_color;
+            transition: width .3s ease-in-out;
+            z-index: -1;
+        }
+    }
+}

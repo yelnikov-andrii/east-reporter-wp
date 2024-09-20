@@ -1,0 +1,60 @@
+.main-marquee {
+  width: 100%;
+  overflow: hidden;
+  background: $txt_color;
+  color: $bg_color_main;
+  padding: 8px 0;
+  white-space: nowrap;
+  position: relative;
+  display: flex;
+  overflow: hidden;
+  user-select: none;
+  gap: 20px;
+
+  &:hover {
+    .main-marquee__content {
+      animation-play-state: paused;
+    }
+  }
+
+  @media screen and (max-width: 768px) {
+    font-size: 22px;
+  }
+
+  &__content {
+    flex-shrink: 0;
+    display: flex;
+    gap: 20px;
+    justify-content: space-around;
+    align-items: center;
+    min-width: 100%;
+    animation: scroll 10s linear infinite;
+  }
+
+  &__link {
+    color: $bg_color_main;
+    font-size: 52px;
+    font-weight: 900;
+    text-transform: uppercase;
+    font-family: "Pobeda Bold";
+    transition: color 0.4s ease;
+
+    @media screen and (max-width: 768px) {
+      font-size: 36px;
+    }
+
+    &:hover {
+      color: $header_hover_color;
+    }
+  }
+}
+
+@keyframes scroll {
+  from {
+    transform: translateX(0);
+  }
+
+  to {
+    transform: translateX(calc(-100% - 20px));
+  }
+}
