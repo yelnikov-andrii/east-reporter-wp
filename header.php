@@ -125,12 +125,16 @@
                         </ul>
                     </li>
                     <li class="header-list__item">
-                        <a class="header-list__link" href="contacts.html">
+                        <?php 
+                         $contacts_slug = 'contacts';
+                        ?>
+                        <a class="header-list__link" href="<?php echo get_permalink(get_page_by_path($contacts_slug)); ?>">
                             Контакти
                         </a>
                     </li>
                     <li class="header-list__item">
-                        <a class="header-list__link" href="about.html">
+                        <?php $about_slug = 'pro-nas' ?>
+                        <a class="header-list__link" href="<?php echo get_permalink( get_page_by_path( $about_slug )) ?>">
                             Про нас
                         </a>
                     </li>

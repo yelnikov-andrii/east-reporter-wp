@@ -1561,6 +1561,14 @@ ul {
 .contacts {
   padding: 64px 0;
 }
+.contacts__h1 {
+  margin: 0 0 64px 0;
+}
+.contacts__info {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
 
 .about {
   padding: 64px 0;
@@ -1584,8 +1592,9 @@ ul {
   font-weight: 500;
 }
 .about__content img {
-  max-width: 450px;
+  max-width: 600px;
   margin: 0 auto;
+  object-fit: contain;
 }
 
 .container {
