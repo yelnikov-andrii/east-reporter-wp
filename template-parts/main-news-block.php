@@ -4,7 +4,7 @@ if (isset($args['category_slug'])) {
 }
 ?>
 
-<div class="main-news__block main-news__block--margin">
+<div class="main-news__block main-news__block--margin" data-aos="fade-up">
     <?php
     // Параметры запроса WP_Query для постов из категории
     $args = array(

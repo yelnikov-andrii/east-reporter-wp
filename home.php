@@ -52,33 +52,6 @@ Template Name: Home
         </div>
     </section>
 
-    <!-- <nav class="main-marquee">
-        <ul class="main-marquee__content">
-            <?php
-            $categories = get_categories(array(
-                'orderby' => 'name',
-                'order' => 'ASC'
-            ));
-            ?>
-            <?php foreach ($categories as $category): ?>
-                <li class="dropdown__item">
-                    <a href="<?php echo esc_url(get_category_link($category->term_id)); ?>" class="main-marquee__link">
-                        <?php echo esc_html($category->name); ?>
-                    </a>
-                </li>
-            <?php endforeach; ?>
-        </ul>
-        <ul aria-hidden="true" class="main-marquee__content">
-            <?php foreach ($categories as $category): ?>
-                <li class="dropdown__item">
-                    <a href="<?php echo esc_url(get_category_link($category->term_id)); ?>" class="main-marquee__link">
-                        <?php echo esc_html($category->name); ?>
-                    </a>
-                </li>
-            <?php endforeach; ?>
-        </ul>
-    </nav> -->
-
     <?php
     get_template_part('template-parts/main-marquee-categories');
     ?>
@@ -94,7 +67,7 @@ Template Name: Home
             get_template_part('template-parts/main-news-block', null, array('category_slug' => $category_slug));
             ?>
 
-            <h2 class="main-news__title">
+            <h2 class="main-news__title" data-aos="fade-up">
                 Війна
             </h2>
 
@@ -104,7 +77,7 @@ Template Name: Home
             ?>
 
 
-            <h2 class="main-news__title">
+            <h2 class="main-news__title" data-aos="fade-up">
                 Мистецтво
             </h2>
 
@@ -118,33 +91,6 @@ Template Name: Home
     <?php
     get_template_part('template-parts/main-marquee-categories');
     ?>
-
-    <!-- <nav class="main-marquee">
-        <ul class="main-marquee__content">
-            <?php
-            $categories = get_categories(array(
-                'orderby' => 'name',
-                'order' => 'ASC'
-            ));
-            ?>
-            <?php foreach ($categories as $category): ?>
-                <li class="dropdown__item">
-                    <a href="<?php echo esc_url(get_category_link($category->term_id)); ?>" class="main-marquee__link">
-                        <?php echo esc_html($category->name); ?>
-                    </a>
-                </li>
-            <?php endforeach; ?>
-        </ul>
-        <ul aria-hidden="true" class="main-marquee__content">
-            <?php foreach ($categories as $category): ?>
-                <li class="dropdown__item">
-                    <a href="<?php echo esc_url(get_category_link($category->term_id)); ?>" class="main-marquee__link">
-                        <?php echo esc_html($category->name); ?>
-                    </a>
-                </li>
-            <?php endforeach; ?>
-        </ul>
-    </nav> -->
 
     <section class="main-important">
         <div class="container main-important__block">
@@ -178,7 +124,7 @@ Template Name: Home
                     </ul>
                 </div>
             </aside>
-            <div class="main-important__banner">
+            <div class="main-important__banner" data-aos="fade-right">
                 <h5>
                     Будьте в курсі
                     <br />

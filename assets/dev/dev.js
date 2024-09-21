@@ -1,4 +1,3 @@
-import '../css/style.css';
 
 // toggle mobile menu
 const toggleButton = document.querySelector('.header__toggle');
@@ -22,3 +21,25 @@ for (let i = 0; i < svgPlusArr.length; i++) {
     dropdownEl.classList.toggle('active');
   })
 }
+
+// AOS
+
+AOS.init();
+
+// scroll top button
+
+const scrollTopBtn = document.querySelector('.button-scrolltop');
+
+window.onscroll = function() { scrollFunction(); };
+
+function scrollFunction() {
+    if (document.body.scrollTop > 300 || document.documentElement.scrollTop > 300) {
+        scrollTopBtn.classList.add("visible");
+    } else {
+        scrollTopBtn.classList.remove("visible");
+    }
+}
+
+scrollTopBtn.addEventListener('click', () => {
+    window.scrollTo({ top: 0, behavior: 'smooth' })
+})

@@ -8,15 +8,15 @@ Template Name: Anounces
 
     <main class="anounces">
         <div class="container anounces__container">
-            <h1 class="anounces__h1">
-                Anounces
+            <h1 class="anounces__h1 h1">
+                Анонси
             </h1>
 
-            <div class="anounces__breadcrumbs">
-                <a href="/" class="anounces__link">
+            <nav class="categories__breadcrumbs">
+                <a href="/" class="categories__link categories__link--breadcrumbs">
                     На головну
                 </a>
-                <svg class="anounces__icon" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                <svg class="categories__icon" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24"
                     fill="none" viewBox="0 0 24 24">
                     <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                         d="m9 5 7 7-7 7" />
@@ -25,7 +25,7 @@ Template Name: Anounces
                 <span>
                     Анонси
                 </span>
-            </div>
+            </nav>
 
             <div class="anounces__list">
 

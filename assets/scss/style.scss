@@ -1,17 +1,20 @@
 
-@import './fonts.scss';
-@import './vars.scss';
-@import './pxToRem.scss';
-@import './reset.scss';
-@import './header.scss';
+@import './fonts/fonts.scss';
+@import './helpers/vars.scss';
+@import './reset/reset.scss';
+
+@import './templates/header.scss';
+@import './templates/footer.scss';
+
+@import './components/index.scss';
+
 @import './main/main.scss';
-@import './footer.scss';
-@import './news/news.scss';
+
+@import './categories/categories.scss';
 @import './anounces/anounces.scss';
-@import './news-article/news-article.scss';
-@import './search-box.scss';
-@import './pagination.scss';
-@import './scrollbar.scss';
+@import './categories-article/categories-article.scss';
+@import './contacts/contacts.scss';
+
 
 
 .container {

@@ -4,10 +4,7 @@
 <head>
     <meta charset="<?php bloginfo('charset'); ?>">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>East Reporter</title>
     <?php wp_head(); ?>
-    <link rel="stylesheet" href="./src/css/style.css" />
-    <script src="./src/js/main.js" defer></script>
 </head>
 
 <body>

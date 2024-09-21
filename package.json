@@ -2,7 +2,7 @@
   "name": "east-reporter",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "home.php",
   "scripts": {
     "build": "webpack",
     "test": "echo \"Error: no test specified\" && exit 1"

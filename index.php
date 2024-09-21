@@ -11,7 +11,7 @@ Template Name: Home
     <section class="main-top">
         <div class="container top__container">
             <div class="main-top__search-box">
-            <?php get_search_form(); ?>
+                <?php get_search_form(); ?>
             </div>
 
             <div class="main-top__block">
@@ -52,185 +52,45 @@ Template Name: Home
         </div>
     </section>
 
-    <nav class="main-marquee">
-        <ul class="main-marquee__content">
-            <?php
-            $categories = get_categories(array(
-                'orderby' => 'name',
-                'order' => 'ASC'
-            ));
-            ?>
-            <?php foreach ($categories as $category): ?>
-                <li class="dropdown__item">
-                    <a href="<?php echo esc_url(get_category_link($category->term_id)); ?>" class="main-marquee__link">
-                        <?php echo esc_html($category->name); ?>
-                    </a>
-                </li>
-            <?php endforeach; ?>
-        </ul>
-        <ul aria-hidden="true" class="main-marquee__content">
-            <?php foreach ($categories as $category): ?>
-                <li class="dropdown__item">
-                    <a href="<?php echo esc_url(get_category_link($category->term_id)); ?>" class="main-marquee__link">
-                        <?php echo esc_html($category->name); ?>
-                    </a>
-                </li>
-            <?php endforeach; ?>
-        </ul>
-    </nav>
+    <?php
+    get_template_part('template-parts/main-marquee-categories');
+    ?>
 
     <section class="main-news">
         <div class="container">
-            <h2 class="main-news__title">
+            <h2 class="main-news__title" data-aos="fade-up">
                 Екологія
             </h2>
 
-            <div class="main-news__block main-news__block--margin">
-                <?php
-                // Параметры запроса WP_Query для постов из категории "Екологія"
-                $args = array(
-                    'category_name' => 'ekologiya', // Слаг категории
-                    'posts_per_page' => 3,         // Количество постов для отображения
-                );
+            <?php
+            $category_slug = 'ekologiya';
+            get_template_part('template-parts/main-news-block', null, array('category_slug' => $category_slug));
+            ?>
 
-                $query = new WP_Query($args);
-
-                // Проверяем, есть ли посты в категории
-                if ($query->have_posts()):
-                    while ($query->have_posts()):
-                        $query->the_post(); ?>
-
-                        <article class="main-news__article">
-                            <?php if (has_post_thumbnail()): ?>
-                                <img src="<?php the_post_thumbnail_url(); ?>" class="main-news__img" alt="<?php the_title(); ?>" />
-                            <?php endif; ?>
-
-                            <h3 class="main-news__h3">
-                                <a href="<?php the_permalink(); ?>"><?php the_title(); ?></a>
-                            </h3>
-
-                            <div class="main-news__description">
-                                <p><?php echo get_the_category_list(', '); ?></p>
-                                <p><?php the_author(); ?></p>
-                                <p><?php the_date(); ?></p>
-                            </div>
-                        </article>
-
-                    <?php endwhile;
-                    wp_reset_postdata(); // Сбрасываем глобальные данные поста
-                else: ?>
-                    <p>Пости в категорії екологія відсутні</p>
-                <?php endif; ?>
-            </div>
-
-            <h2 class="main-news__title">
+            <h2 class="main-news__title" data-aos="fade-up">
                 Війна
             </h2>
 
-            <div class="main-news__block main-news__block--margin">
-                <?php
-                $args = array(
-                    'category_name' => 'vijna',
-                    'posts_per_page' => 3,
-                );
+            <?php
+            $category_slug = 'vijna';
+            get_template_part('template-parts/main-news-block', null, array('category_slug' => $category_slug));
+            ?>
 
-                $query = new WP_Query($args);
 
-                if ($query->have_posts()):
-                    while ($query->have_posts()):
-                        $query->the_post(); ?>
-
-                        <article class="main-news__article">
-                            <?php if (has_post_thumbnail()): ?>
-                                <img src="<?php the_post_thumbnail_url(); ?>" class="main-news__img" alt="<?php the_title(); ?>" />
-                            <?php endif; ?>
-
-                            <h3 class="main-news__h3">
-                                <a href="<?php the_permalink(); ?>"><?php the_title(); ?></a>
-                            </h3>
-
-                            <div class="main-news__description">
-                                <p><?php echo get_the_category_list(', '); ?></p>
-                                <p><?php the_author(); ?></p>
-                                <p><?php the_date(); ?></p>
-                            </div>
-                        </article>
-
-                    <?php endwhile;
-                    wp_reset_postdata();
-                else: ?>
-                    <p>Пости в категорії війна відсутні</p>
-                <?php endif; ?>
-            </div>
-
-            <h2 class="main-news__title">
+            <h2 class="main-news__title" data-aos="fade-up">
                 Мистецтво
             </h2>
 
-            <div class="main-news__block main-news__block--margin">
-                <?php
-                $args = array(
-                    'category__in' => array(get_cat_ID('Мистецтво'), get_cat_ID('.')),
-                    'posts_per_page' => 3,
-                );
-
-                $query = new WP_Query($args);
-
-                if ($query->have_posts()):
-                    while ($query->have_posts()):
-                        $query->the_post(); ?>
-
-                        <article class="main-news__article">
-                            <?php if (has_post_thumbnail()): ?>
-                                <img src="<?php the_post_thumbnail_url(); ?>" class="main-news__img" alt="<?php the_title(); ?>" />
-                            <?php endif; ?>
-
-                            <h3 class="main-news__h3">
-                                <a href="<?php the_permalink(); ?>"><?php the_title(); ?></a>
-                            </h3>
-
-                            <div class="main-news__description">
-                                <p><?php echo get_the_category_list(', '); ?></p>
-                                <p><?php the_author(); ?></p>
-                                <p><?php the_date(); ?></p>
-                            </div>
-                        </article>
-
-                    <?php endwhile;
-                    wp_reset_postdata();
-                else: ?>
-                    <p>Пости в категорії мистецтво відсутні</p>
-                <?php endif; ?>
-            </div>
+            <?php
+            $category_slug = 'mystecztvo';
+            get_template_part('template-parts/main-news-block', null, array('category_slug' => $category_slug));
+            ?>
         </div>
     </section>
 
-    <nav class="main-marquee">
-        <ul class="main-marquee__content">
-            <?php
-            $categories = get_categories(array(
-                'orderby' => 'name',
-                'order' => 'ASC'
-            ));
-            ?>
-            <?php foreach ($categories as $category): ?>
-                <li class="dropdown__item">
-                    <a href="<?php echo esc_url(get_category_link($category->term_id)); ?>" class="main-marquee__link">
-                        <?php echo esc_html($category->name); ?>
-                    </a>
-                </li>
-            <?php endforeach; ?>
-        </ul>
-        <ul aria-hidden="true" class="main-marquee__content">
-            <?php foreach ($categories as $category): ?>
-                <li class="dropdown__item">
-                    <a href="<?php echo esc_url(get_category_link($category->term_id)); ?>" class="main-marquee__link">
-                        <?php echo esc_html($category->name); ?>
-                    </a>
-                </li>
-            <?php endforeach; ?>
-        </ul>
-    </nav>
+    <?php
+    get_template_part('template-parts/main-marquee-categories');
+    ?>
 
     <section class="main-important">
         <div class="container main-important__block">
@@ -242,12 +102,18 @@ Template Name: Home
 
                     <ul class="main-important__list">
                         <?php
-                        $categories = get_categories(array(
-                            'orderby' => 'name',
-                            'order' => 'ASC'
-                        ));
+                        $parent_category = get_category_by_slug('news');
+                        if ($parent_category) {
+                            // Получаем подкатегории категории "news"
+                            $subcategories = get_categories(array(
+                                'child_of' => $parent_category->term_id, // ID родительской категории
+                                'hide_empty' => false, // Показывать пустые категории или нет
+                                'orderby' => 'name',
+                                'order' => 'ASC'
+                            ));
+                        }
                         ?>
-                        <?php foreach ($categories as $category): ?>
+                        <?php foreach ($subcategories as $category): ?>
                             <li class="dropdown__item">
                                 <a href="<?php echo esc_url(get_category_link($category->term_id)); ?>"
                                     class="main-important__link">
@@ -258,7 +124,7 @@ Template Name: Home
                     </ul>
                 </div>
             </aside>
-            <div class="main-important__banner">
+            <div class="main-important__banner" data-aos="fade-left">
                 <h5>
                     Будьте в курсі
                     <br />
@@ -267,13 +133,13 @@ Template Name: Home
                     <span class="main-important__span">
                         East Reporter
                     </span>
-                    <?php 
-                     $mypod = pods( 'contacts' );
-                     if ($mypod->exists()) {
+                    <?php
+                    $mypod = pods('contacts');
+                    if ($mypod->exists()) {
                         echo '<p>pod is exist</p>';
-                     } else {
+                    } else {
                         echo '<p> not found</p>';
-                     }
+                    }
                     ?>
                 </h5>
             </div>
