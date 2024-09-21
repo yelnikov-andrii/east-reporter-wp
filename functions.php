@@ -8,6 +8,7 @@ function disable_jquery() {
 add_action('wp_enqueue_scripts', 'disable_jquery');
 
 add_action('wp_enqueue_scripts', 'theme_name_scripts');
+
 function theme_name_scripts()
 {
     wp_enqueue_style('aos-style', 'https://unpkg.com/aos@2.3.4/dist/aos.css', array(), '2.3.4');
