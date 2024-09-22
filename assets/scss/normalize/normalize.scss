@@ -1,0 +1,35 @@
+html {
+    margin: 0;
+}
+
+body {
+    margin: 0;
+    font-family: 'Racama';
+    color: $txt_color;
+    background: $bg_color_main;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+a {
+    color: $txt_color;
+    text-decoration: none;
+}
+
+input {
+    &::placeholder {
+        font-family: 'Racama';
+    }
+}
+
+h1, h2, h3, h4, h5, h6, p {
+    margin: 0;
+}
+
+ul {
+    padding: 0;
+    list-style: none;
+    margin: 0;
+}

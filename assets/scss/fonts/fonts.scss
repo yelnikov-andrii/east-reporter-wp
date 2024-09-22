@@ -12,7 +12,10 @@
 
 @font-face {
     font-family: 'Pobeda Bold';
-    font-weight: normal;
-	font-style: normal;
-    src: url('../fonts/pobeda-bold.ttf') format('truetype');
+    font-weight: bold;
+	font-style: bold;
+    src: url('../fonts/pobeda-bold.ttf') format('truetype'),
+         url('../fonts/pobeda-bold.otf') format('opentype'),
+         url('../../fonts/pobeda-bold.woff') format('woff'),
+         url('../../fonts/pobeda-bold.woff2') format('woff2'),
 }

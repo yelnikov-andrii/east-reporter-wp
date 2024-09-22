@@ -2,9 +2,11 @@
 // toggle mobile menu
 const toggleButton = document.querySelector('.header__toggle');
 const headerList = document.querySelector('.header-list');
+const headerWrapper = document.querySelector('.header__wrapper-list');
 
 toggleButton.addEventListener('click', () => {
     headerList.classList.toggle('active');
+    headerWrapper.classList.toggle('active');
     toggleButton.classList.toggle('active');
 });
 
