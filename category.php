@@ -21,6 +21,14 @@
         </nav>
 
         <div class="categories__block">
+            <?php
+            function get_reading_time($content)
+            {
+                $word_count = str_word_count(strip_tags($content));
+                $reading_time = ceil($word_count / 180);
+                return max($reading_time, 1);
+            }
+            ?>
             <?php if (have_posts()): ?>
                 <div class="categories__list">
                     <?php while (have_posts()):

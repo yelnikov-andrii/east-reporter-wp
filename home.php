@@ -7,7 +7,6 @@ Template Name: Home
 <?php get_header(); ?>
 
 <main class="main">
-
     <section class="main-top">
         <div class="container top__container">
             <div class="main-top__search-box">
@@ -32,7 +31,7 @@ Template Name: Home
                         <a class="main-top__news-card" href="<?php the_permalink(); ?>">
                             <?php
                             if (has_post_thumbnail()) {
-                                the_post_thumbnail('medium', array(
+                                the_post_thumbnail('large', array(
                                     'class' => 'main-top__news-img',
                                     'alt' => get_the_title(),
                                     'title' => 'Thumbnail Image'

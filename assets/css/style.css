@@ -1128,6 +1128,19 @@ ul {
     min-height: 290px;
   }
 }
+.categories__description-wrapper-categories {
+  display: flex;
+  justify-content: space-between;
+  margin: 0 0 16px 0;
+}
+.categories__reading-time {
+  width: max-content;
+  color: white;
+  font-size: 16px;
+  display: flex;
+  gap: 8px;
+  align-items: center;
+}
 .categories__description {
   width: 48%;
   display: flex;
@@ -1144,7 +1157,6 @@ ul {
   display: flex;
   gap: 8px;
   align-items: center;
-  margin: 0 0 16px 0;
 }
 .categories__description-link {
   background: #e0e0e0;
