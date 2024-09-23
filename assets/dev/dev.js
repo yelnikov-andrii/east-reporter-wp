@@ -31,19 +31,30 @@ AOS.init();
 // scroll top button
 
 const scrollTopBtn = document.querySelector('.button-scrolltop');
+let lastScrollY = window.scrollY;
 
-window.onscroll = function () { scrollFunction(); };
+window.addEventListener('scroll', function() {
+    scrollFunction();
+});
 
 function scrollFunction() {
-    if (document.body.scrollTop > 300 || document.documentElement.scrollTop > 300) {
+    const currentScrollY = window.scrollY; // Текущая позиция скролла
+
+    if (currentScrollY > 1000 && lastScrollY > currentScrollY) {
+        // Если скролл больше 300px и мы скроллим вверх
         scrollTopBtn.classList.add("visible");
     } else {
+        // Если скроллим вниз или меньше 300px
         scrollTopBtn.classList.remove("visible");
     }
+
+    // Обновляем последнее значение скролла
+    lastScrollY = currentScrollY;
 }
 
 scrollTopBtn.addEventListener('click', () => {
-    window.scrollTo({ top: 0, behavior: 'smooth' })
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+    scrollTopBtn.classList.remove('visible')
 });
 
 // Adjust min height of main section

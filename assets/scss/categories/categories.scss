@@ -173,7 +173,6 @@
     &__description-link {
         background: $txt_secondary;
         color: $bg_color_main;
-        padding: 4px 8px;
         position: relative;
         font-weight: 700;
         font-size: 14px;
@@ -184,6 +183,9 @@
         display: flex;
         justify-content: center;
         align-items: center;
+        width: max-content;
+        height: 32px;
+        padding: 0 8px;
 
         &:hover {
             color: $txt_secondary;

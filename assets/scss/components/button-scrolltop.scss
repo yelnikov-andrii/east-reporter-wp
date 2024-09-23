@@ -33,14 +33,21 @@
     }
 
     &.visible {
-        opacity: 0.4;
+        opacity: 0.8;
         transform: scale(1);
     }
 
-    &:hover {
-        background-color: $link_color;
-        transform: scale(1.1);
+    @media (hover: hover) {
+        &:hover {
+            background-color: $link_color;
+            transform: scale(1.1);
+            opacity: 1;
+            box-shadow: 0 6px 10px rgba(0, 0, 0, 0.3);
+        }
+    }
+
+    &:active {
+        background-color: darken($header_hover_color, 10%); // Например, темнее на 10%
         opacity: 1;
-        box-shadow: 0 6px 10px rgba(0, 0, 0, 0.3);
     }
 }

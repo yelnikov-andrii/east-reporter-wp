@@ -51,8 +51,16 @@
         text-transform: uppercase;
         z-index: 2;
         cursor: pointer;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        transition: all 0.4s ease;
+        border: none;
+        outline: none;
+        border-radius: 4px;
 
         &:hover {
+            color: $txt_color;
             &::before {
                 width: 100%;
             }
