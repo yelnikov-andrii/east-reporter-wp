@@ -15,17 +15,34 @@
                 if ($contact_pod->exists()) {
                     $email = $contact_pod->field('email');
                     $phone = $contact_pod->field('phone');
-
-                    echo '<li class="footer__contact-item"><p><span>Email:</span> <a href="mailto: ' . esc_html($email) . '">' . esc_html($email) . '</a></p></li>';
-                    echo '<li class="footer__contact-item"><p><span>Телефон</span>: <a href="tel: ' . esc_html($phone) . '">' . esc_html($phone) . '</a></p></li>';
+                    $instagram = $contact_pod->field('instagram');
+                    $youtube = $contact_pod->field('youtube');
+                    $telegram = $contact_pod->field('telegram');
                 }
                 ?>
+                <li class="footer__contact-item">
+                    <p>
+                        <span>Email:</span>
+                        <a href="<?php echo 'mailto:' . esc_html($email) ?>">
+                            <?php echo esc_html($email) ?>
+                        </a>
+                    </p>
+                </li>
+                <li class="footer__contact-item">
+                    <p>
+                        <span>Телефон</span>:
+                        <a href="<?php echo 'tel:' . esc_html($phone) ?>">
+                            <?php echo esc_html($phone) ?>
+                        </a>
+                    </p>
+                </li>
             </ul>
         </div>
         <div class="footer__social-media">
             <ul class="footer__social-media-list">
+
                 <li>
-                    <a href="https://instagram.com" target="_blank" class="footer__social-media-link">
+                    <a href="<?php echo esc_html($instagram) ?>" target="_blank" class="footer__social-media-link">
                         <svg id="_Слой_2" data-name="Слой 2" xmlns="http://www.w3.org/2000/svg"
                             viewBox="0 0 256.11 256.18">
                             <defs>
@@ -50,7 +67,7 @@
                     </a>
                 </li>
                 <li>
-                    <a href="#" target="_blank" class="footer__social-media-link">
+                    <a href="<?php echo esc_html($telegram) ?>" target="_blank" class="footer__social-media-link">
                         <svg id="_Слой_2" data-name="Слой 2" xmlns="http://www.w3.org/2000/svg"
                             viewBox="0 0 288.26 243.76">
                             <defs>
@@ -69,7 +86,7 @@
                     </a>
                 </li>
                 <li>
-                    <a href="https://youtube.com" target="_blank" class="footer__social-media-link">
+                    <a href="<?php echo esc_html($youtube) ?>" target="_blank" class="footer__social-media-link">
                         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 365.11 256.18">
                             <defs>
                                 <style>
