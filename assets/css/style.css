@@ -99,7 +99,22 @@ ul {
   width: 100%;
 }
 .header__wrapper-list {
-  width: 100%;
+  width: 60%;
+}
+@media screen and (max-width: 1440px) {
+  .header__wrapper-list {
+    width: 65%;
+  }
+}
+@media screen and (max-width: 1200px) {
+  .header__wrapper-list {
+    width: 70%;
+  }
+}
+@media screen and (max-width: 1024px) {
+  .header__wrapper-list {
+    width: 75%;
+  }
 }
 @media screen and (max-width: 768px) {
   .header__wrapper-list {
@@ -124,7 +139,7 @@ ul {
 
 .nav {
   display: flex;
-  gap: 64px;
+  justify-content: space-between;
   align-items: center;
 }
 @media screen and (max-width: 768px) {

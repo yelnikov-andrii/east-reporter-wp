@@ -60,7 +60,19 @@
     }
 
     &__wrapper-list {
-        width: 100%;
+        width: 60%;
+
+        @media screen and (max-width: 1440px) {
+            width: 65%;
+        }
+
+        @media screen and (max-width: 1200px) {
+            width: 70%;
+        }
+
+        @media screen and (max-width: 1024px) {
+            width: 75%;
+        }
 
         @media screen and (max-width: 768px) {
             display: none;
@@ -86,7 +98,7 @@
 
 .nav {
     display: flex;
-    gap: 64px;
+    justify-content: space-between;
     align-items: center;
 
     @media screen and (max-width: 768px) {
