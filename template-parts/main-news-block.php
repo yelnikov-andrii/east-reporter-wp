@@ -4,12 +4,12 @@ if (isset($args['category_slug'])) {
 }
 ?>
 
-<div class="main-news__block main-news__block--margin" data-aos="fade-up">
+<div class="swiper-wrapper">
     <?php
     // Параметры запроса WP_Query для постов из категории
     $args = array(
         'category_name' => $category_slug, // Слаг категории
-        'posts_per_page' => 3,         // Количество постов для отображения
+        'posts_per_page' => 9,         // Количество постов для отображения
     );
 
     $query = new WP_Query($args);
@@ -22,7 +22,7 @@ if (isset($args['category_slug'])) {
             $thumbnail_url = get_the_post_thumbnail_url();
             ?>
             <article
-                class="<?php echo $thumbnail_url ? 'main-news__article' : 'main-news__article main-news__article--no-image'; ?>">
+                class="<?php echo $thumbnail_url ? 'main-news__article swiper-slide' : 'main-news__article swiper-slide main-news__article--no-image'; ?>">
                 <?php
                 if ($thumbnail_url): ?>
                     <img src="<?php echo esc_url($thumbnail_url); ?>" class="main-news__img" alt="<?php the_title(); ?>" />
@@ -46,4 +46,4 @@ if (isset($args['category_slug'])) {
     else: ?>
         <p>Пости відсутні</p>
     <?php endif; ?>
-    </div>
+</div>

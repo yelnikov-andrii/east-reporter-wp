@@ -1,0 +1,152 @@
+.swiper {
+    height: 480px;
+
+    @media screen and (max-width: 768px) {
+        height: 400px;
+    }
+
+    @media screen and (max-width: 768px) {
+        height: 420px;
+    }
+
+    @media screen and (max-width: 425px) {
+        height: 360px;
+    }
+
+    &-slide {
+        height: auto;
+    }
+
+    &-navigation {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+
+        @media screen and (max-width: 1024px) {
+            flex-direction: row;
+            justify-content: space-between;
+        }
+        /* Center the navigation buttons */
+
+        @media screen and (max-width: 768px) {
+            flex-direction: row;
+            justify-content: space-between;
+            padding: 0 32px;
+        }
+    }
+
+    &-swiper-button {
+        width: 40px;
+        /* Adjust the width */
+        height: 40px;
+        /* Adjust the height */
+        background-color: $header_hover_color;
+        /* Set background color */
+        color: $txt_color;
+        /* Set text/icon color */
+        border-radius: 50%;
+        /* Optional: make them circular */
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        &:hover {
+            background-color: darken($header_hover_color, 10%);
+            /* Darken on hover */
+        }
+    }
+}
+
+.main-top .swiper-navigation .swiper-button-prev,
+.main-top .swiper-navigation .swiper-button-next {
+    width: 24px;
+    /* Adjust the width */
+    height: 24px;
+    /* Adjust the height */
+    background-color: $header_hover_color;
+    /* Set background color */
+    color: $txt_color;
+    /* Set text/icon color */
+    border-radius: 50%;
+    /* Optional: make them circular */
+    position: static;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: all 0.4s ease;
+    transform: scale(1);
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+
+    &:active {
+        background-color: darken($header_hover_color, 10%); // Например, темнее на 10%
+        opacity: 1;
+    }
+
+    svg {
+        width: 12px;
+        height: 12px;
+    }
+
+    &::after {
+        display: none;
+    }
+
+    &:hover {
+        background-color: darken($header_hover_color, 10%);
+    }
+}
+
+.main-top .swiper-navigation .swiper-button-next {
+    transform: rotate(180deg);
+
+    @media (hover: hover) {
+        &:hover {
+            background-color: $link_color;
+            transform: scale(1.1), rotate(180deg);
+            box-shadow: 0 6px 10px rgba(0, 0, 0, 0.3);
+        }
+    }
+
+    @media screen and (max-width: 1024px) {
+        transform: rotate(90deg);
+
+        &:hover {
+            transform: scale(1.1), rotate(-90deg);
+        }
+    }
+}
+
+.main-top .swiper-navigation .swiper-button-prev {
+    @media screen and (max-width: 1024px) {
+        transform: rotate(-90deg);
+    }
+
+    @media (hover: hover) {
+        &:hover {
+            background-color: $link_color;
+            transform: scale(1.1),;
+            box-shadow: 0 6px 10px rgba(0, 0, 0, 0.3);
+        }
+    }
+
+    @media screen and (max-width: 1024px) {
+        &:hover {
+            transform: scale(1.1), rotate(-90deg);
+        }
+    }
+}
+
+.swiper-news-1 {
+    width: 100%;
+    overflow: hidden;
+}
+
+.swiper-news-2 {
+    width: 100%;
+    overflow: hidden;
+}
+
+.swiper-news-3 {
+    width: 100%;
+    overflow: hidden;
+}

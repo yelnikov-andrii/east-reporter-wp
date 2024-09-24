@@ -1,8 +1,8 @@
 @font-face {
     font-family: 'Racama';
     src: url('../fonts/Racama.otf') format('opentype'),
-         url('../../fonts/Racama-Regular.woff2') format('woff2'),
-         url('../fonts/Racama-Regular.woff') format('woff');
+        url('../../fonts/Racama-Regular.woff2') format('woff2'),
+        url('../fonts/Racama-Regular.woff') format('woff');
     font-weight: normal;
     font-style: normal;
 }
@@ -20,4 +20,14 @@
         url('../fonts/pobeda-bold.otf') format('opentype'),
         url('../../fonts/pobeda-bold.woff') format('woff'),
         url('../../fonts/pobeda-bold.woff2') format('woff2'),
+}
+
+@font-face {
+    font-family: 'Namu';
+    font-weight: normal;
+    font-style: normal;
+    src:    url('../fonts/namu-1850.ttf') format('truetype'),
+            url('../fonts/namu-1850.otf') format('opentype'),
+            url('../fonts/namu-1850.woff2') format('woff2'),
+            url('../fonts/namu-1850.woff') format('woff'),
 }
