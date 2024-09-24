@@ -4,7 +4,7 @@ html {
 
 body {
     margin: 0;
-    font-family: 'Racama', 'Roboto', sans-serif;
+    font-family: 'Namu', sans-serif;
     color: $txt_color;
     background: $bg_color_main;
 }
@@ -32,4 +32,8 @@ ul {
     padding: 0;
     list-style: none;
     margin: 0;
+}
+
+main {
+    min-height: 60vh;
 }

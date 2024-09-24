@@ -1,4 +1,7 @@
 
+import swiper from './swiper-top.js';
+import * as swipers from './swipers-news.js';
+
 // toggle mobile menu
 const toggleButton = document.querySelector('.header__toggle');
 const headerList = document.querySelector('.header-list');
@@ -33,7 +36,7 @@ AOS.init();
 const scrollTopBtn = document.querySelector('.button-scrolltop');
 let lastScrollY = window.scrollY;
 
-window.addEventListener('scroll', function() {
+window.addEventListener('scroll', function () {
     scrollFunction();
 });
 
@@ -59,7 +62,7 @@ scrollTopBtn.addEventListener('click', () => {
 
 // Adjust min height of main section
 
-document.addEventListener('DOMContentLoaded', () => {
+function adjustMainHeight() {
     const header = document.querySelector('header');
     const footer = document.querySelector('footer');
     const main = document.querySelector('main');
@@ -70,4 +73,9 @@ document.addEventListener('DOMContentLoaded', () => {
     const totalHeight = window.innerHeight - headerHeight - footerHeight;
 
     main.style.minHeight = `${totalHeight}px`;
-});
+}
+
+document.addEventListener('DOMContentLoaded',
+    adjustMainHeight);
+window.addEventListener('resize', adjustMainHeight);
+

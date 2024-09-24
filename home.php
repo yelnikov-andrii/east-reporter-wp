@@ -15,7 +15,7 @@ Template Name: Home
 
             <div class="main-top__block">
                 <div class="main-top__banner">
-                    <iframe class="main-top__iframe" src="https://www.youtube.com/embed/2_ZgYGLoN0o?si=2Hmeqn7nFYgpGYmJ"
+                    <iframe class="main-top__iframe" src="https://www.youtube.com/embed/nXwaj5DfzCc?si=OBgWpGJiW7LdU7sn"
                         title="YouTube video player" frameborder="0"
                         allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
                         referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
@@ -25,10 +25,10 @@ Template Name: Home
                     'post_type' => 'post'
                 ));
                 if ($all_posts_query->have_posts()):
-                    echo '<div class="main-top__news">';
+                    echo '<div class="main-top__news swiper"><div class="swiper-wrapper">';
                     while ($all_posts_query->have_posts()):
                         $all_posts_query->the_post(); ?>
-                        <a class="main-top__news-card" href="<?php the_permalink(); ?>">
+                        <a class="main-top__news-card swiper-slide" href="<?php the_permalink(); ?>">
                             <?php
                             if (has_post_thumbnail()) {
                                 the_post_thumbnail('large', array(
@@ -43,11 +43,26 @@ Template Name: Home
                             </h2>
                         </a>
                     <?php endwhile;
-                    echo '</div>';
+                    echo '</div>
+              </div>
+              <div class="swiper-navigation">
+                  <div class="swiper-button-prev"><svg xmlns="http://www.w3.org/2000/svg" height="32" width="32" viewBox="0 0 384 512">
+            <path
+                d="M214.6 41.4c-12.5-12.5-32.8-12.5-45.3 0l-160 160c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0L160 141.2V448c0 17.7 14.3 32 32 32s32-14.3 32-32V141.2L329.4 246.6c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3l-160-160z">
+            </path>
+        </svg></div>
+                  <div class="swiper-button-next"><svg xmlns="http://www.w3.org/2000/svg" height="32" width="32" viewBox="0 0 384 512">
+            <path
+                d="M214.6 41.4c-12.5-12.5-32.8-12.5-45.3 0l-160 160c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0L160 141.2V448c0 17.7 14.3 32 32 32s32-14.3 32-32V141.2L329.4 246.6c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3l-160-160z">
+            </path>
+        </svg></div>
+              </div>
+            </div>';
                 endif;
                 wp_reset_postdata();
                 ?>
             </div>
+
         </div>
     </section>
 
@@ -61,29 +76,35 @@ Template Name: Home
                 Екологія
             </h2>
 
-            <?php
-            $category_slug = 'ekologiya';
-            get_template_part('template-parts/main-news-block', null, array('category_slug' => $category_slug));
-            ?>
+            <div class="swiper-news-1 main-news__block main-news__block--margin" data-aos="fade-up">
+                <?php
+                $category_slug = 'ekologiya';
+                get_template_part('template-parts/main-news-block', null, array('category_slug' => $category_slug));
+                ?>
+            </div>
 
             <h2 class="main-news__title" data-aos="fade-up">
                 Війна
             </h2>
 
-            <?php
-            $category_slug = 'vijna';
-            get_template_part('template-parts/main-news-block', null, array('category_slug' => $category_slug));
-            ?>
+            <div class="swiper-news-2 main-news__block main-news__block--margin" data-aos="fade-up">
+                <?php
+                $category_slug = 'vijna';
+                get_template_part('template-parts/main-news-block', null, array('category_slug' => $category_slug));
+                ?>
+            </div>
 
 
             <h2 class="main-news__title" data-aos="fade-up">
-                Мистецтво
+                Культура
             </h2>
 
-            <?php
-            $category_slug = 'mystecztvo';
-            get_template_part('template-parts/main-news-block', null, array('category_slug' => $category_slug));
-            ?>
+            <div class="swiper-news-3 main-news__block" data-aos="fade-up">
+                <?php
+                $category_slug = 'kultura';
+                get_template_part('template-parts/main-news-block', null, array('category_slug' => $category_slug));
+                ?>
+            </div>
         </div>
     </section>
 
@@ -112,8 +133,8 @@ Template Name: Home
                             ));
                         }
                         ?>
-                        <?php foreach ($subcategories as $category): ?>
-                            <li class="dropdown__item">
+                        <?php foreach ($subcategories as $index => $category): ?>
+                            <li class="dropdown__item" data-aos="fade-left" data-aos-delay="<?php echo $index * 100; ?>">
                                 <a href="<?php echo esc_url(get_category_link($category->term_id)); ?>"
                                     class="main-important__link">
                                     <?php echo esc_html($category->name); ?>
@@ -132,14 +153,6 @@ Template Name: Home
                     <span class="main-important__span">
                         East Reporter
                     </span>
-                    <?php
-                    $mypod = pods('contacts');
-                    if ($mypod->exists()) {
-                        echo '<p>pod is exist</p>';
-                    } else {
-                        echo '<p> not found</p>';
-                    }
-                    ?>
                 </h5>
             </div>
         </div>

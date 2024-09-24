@@ -12,9 +12,15 @@ add_action('wp_enqueue_scripts', 'theme_name_scripts');
 function theme_name_scripts()
 {
     wp_enqueue_style('aos-style', 'https://unpkg.com/aos@2.3.4/dist/aos.css', array(), '2.3.4');
+
+    wp_enqueue_style('swiper-style', 'https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css');
+
     wp_enqueue_style('main-style', get_template_directory_uri() . '/assets/css/style.css', array(), '1.0.0');
 
     wp_enqueue_script('aos-script', 'https://unpkg.com/aos@2.3.4/dist/aos.js', array(), '1.3.4', true);
+
+    wp_enqueue_script('swiper-script', 'https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js');
+
     wp_enqueue_script('main-script', get_template_directory_uri() . '/assets/js/main.js', array(), '1.0.0', true);
 }
 
