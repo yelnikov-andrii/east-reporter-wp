@@ -5,8 +5,8 @@ html {
 body {
     margin: 0;
     font-family: 'Namu', sans-serif;
-    color: $txt_color;
-    background: $bg_color_main;
+    color: var(--txt-color);
+    background: var(--bg-color-main);
 }
 
 * {
@@ -14,7 +14,7 @@ body {
 }
 
 a {
-    color: $txt_color;
+    color: var(--txt-color);
     text-decoration: none;
 }
 

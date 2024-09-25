@@ -26,6 +26,9 @@ if (isset($args['category_slug'])) {
                 <?php
                 if ($thumbnail_url): ?>
                     <img src="<?php echo esc_url($thumbnail_url); ?>" class="main-news__img" alt="<?php the_title(); ?>" />
+                <?php else: ?>
+                    <img src="<?php bloginfo('template_url'); ?>/assets/images/default-image.png" class="main-news__img"
+                        alt="Default image" />
                 <?php endif; ?>
 
                 <div>

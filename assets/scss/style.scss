@@ -16,6 +16,28 @@
 @import './contacts/contacts.scss';
 @import './about/about.scss';
 
+body {
+    @include set-theme(
+      $dark-theme-header-hover-color, 
+      $dark-theme-txt-color, 
+      $dark-theme-txt-secondary, 
+      $dark-theme-bg-color-main, 
+      $dark-theme-bg-color-secondary, 
+      $dark-theme-link-color
+    );
+  }
+  
+  body.light-theme {
+    @include set-theme(
+      $light-theme-header-hover-color, 
+      $light-theme-txt-color, 
+      $light-theme-txt-secondary, 
+      $light-theme-bg-color-main, 
+      $light-theme-bg-color-secondary, 
+      $light-theme-link-color
+    );
+  }
+
 .container {
     max-width: 1400px;
     margin: 0 auto;

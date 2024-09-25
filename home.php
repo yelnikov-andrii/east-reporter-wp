@@ -15,10 +15,23 @@ Template Name: Home
 
             <div class="main-top__block">
                 <div class="main-top__banner">
-                    <iframe class="main-top__iframe" src="https://www.youtube.com/embed/nXwaj5DfzCc?si=OBgWpGJiW7LdU7sn"
-                        title="YouTube video player" frameborder="0"
-                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                        referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+                    <?php
+                    // Инициализируем Pods объект для pod 'main-video-frame'
+                    $pod = pods('main-video-frame', get_the_ID()); // Получаем текущее значение для конкретного поста/страницы
+                    
+                    // Проверяем, существует ли значение поля 'video'
+                    if ($pod && $pod->field('video')) {
+                        $video_url = $pod->field('video');
+                        // Выводим содержимое поля 'video'
+                        if (filter_var($video_url, FILTER_VALIDATE_URL)) {
+                            // Используем oEmbed для преобразования ссылки в видео
+                            echo wp_oembed_get($video_url);
+                        } else {
+                            // Выводим предупреждение, если это не ссылка
+                            echo '<p>Посилання на відео некоректне</p>';
+                        }
+                    }
+                    ?>
                 </div>
                 <?php
                 $all_posts_query = new WP_Query(array(

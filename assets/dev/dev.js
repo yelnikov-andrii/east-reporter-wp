@@ -79,3 +79,29 @@ document.addEventListener('DOMContentLoaded',
     adjustMainHeight);
 window.addEventListener('resize', adjustMainHeight);
 
+// Theme toggler
+
+
+    const themeToggleButton = document.querySelector('#theme-toggle'); // Кнопка для переключения темы
+    let currentTheme = localStorage.getItem('theme') || 'dark'; // Получаем сохраненную тему или задаем тему по умолчанию
+
+    // Устанавливаем тему при загрузке страницы
+    if (currentTheme === 'light') {
+        document.body.classList.add('light-theme');
+    }
+
+    // Переключение темы
+    themeToggleButton.addEventListener('click', () => {
+        if (currentTheme === 'light') {
+            document.body.classList.remove('light-theme');
+            currentTheme = 'dark'; // Обновляем переменную после переключения
+        } else {
+            document.body.classList.add('light-theme');
+            currentTheme = 'light'; // Обновляем переменную после переключения
+        }
+
+        // Сохраняем новую тему в localStorage
+        localStorage.setItem('theme', currentTheme);
+    });
+
+

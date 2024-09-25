@@ -11,8 +11,8 @@
         width: 100%;
         border-radius: 8px;
         padding: 5px 48px 5px 10px;
-        font-family: 'Racama';
         font-size: 20px;
+        border: 1px solid var(--txt-color);
     }
     
     &__icon {
@@ -24,7 +24,7 @@
         right: 5px;
         transform: translateY(-50%);
         font-size: 18px;
-        color: $txt_secondary;
+        color: var(--txt-secondary);
         cursor: pointer;
         
         svg {

@@ -40,9 +40,9 @@
         /* Adjust the width */
         height: 40px;
         /* Adjust the height */
-        background-color: $header_hover_color;
+        background-color: var(--header-hover-color);
         /* Set background color */
-        color: $txt_color;
+        color: var(--txt-color);
         /* Set text/icon color */
         border-radius: 50%;
         /* Optional: make them circular */
@@ -51,7 +51,7 @@
         justify-content: center;
 
         &:hover {
-            background-color: darken($header_hover_color, 10%);
+            background-color: darken(black, 10%);
             /* Darken on hover */
         }
     }
@@ -63,9 +63,9 @@
     /* Adjust the width */
     height: 24px;
     /* Adjust the height */
-    background-color: $header_hover_color;
+    background-color: var(--header-hover-color);
     /* Set background color */
-    color: $txt_color;
+    color: var(--txt-color);
     /* Set text/icon color */
     border-radius: 50%;
     /* Optional: make them circular */
@@ -78,7 +78,7 @@
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
 
     &:active {
-        background-color: darken($header_hover_color, 10%); // Например, темнее на 10%
+        background-color: darken(black, 10%); // Например, темнее на 10%
         opacity: 1;
     }
 
@@ -92,7 +92,7 @@
     }
 
     &:hover {
-        background-color: darken($header_hover_color, 10%);
+        background-color: darken(black, 10%);
     }
 }
 
@@ -101,7 +101,7 @@
 
     @media (hover: hover) {
         &:hover {
-            background-color: $link_color;
+            background-color: var(--link-color);
             transform: scale(1.1), rotate(180deg);
             box-shadow: 0 6px 10px rgba(0, 0, 0, 0.3);
         }
@@ -123,7 +123,7 @@
 
     @media (hover: hover) {
         &:hover {
-            background-color: $link_color;
+            background-color: var(--link-color);
             transform: scale(1.1),;
             box-shadow: 0 6px 10px rgba(0, 0, 0, 0.3);
         }
