@@ -6,8 +6,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <?php wp_head(); ?>
 </head>
-
-<body>
+<?php
+$theme = isset($_COOKIE['theme']) ? $_COOKIE['theme'] : 'dark'; // Получаем тему из куки или задаем по умолчанию
+?>
+<body class="<?php echo ($theme === 'light') ? 'light-theme' : ''; ?>">
 
     <header class="header">
         <div class="container header__container">
@@ -63,24 +65,33 @@
                                 ));
                             }
                             ?>
-                            <ul class="dropdown">
-                                <?php foreach ($subcategories as $category): ?>
-                                    <li class="dropdown__item">
-                                        <a href="<?php echo esc_url(get_category_link($category->term_id)); ?>"
-                                            class="header-list__link">
-                                            <?php echo esc_html($category->name); ?>
-                                        </a>
-                                    </li>
-                                <?php endforeach; ?>
-                            </ul>
+                            <?php if (!empty($subcategories)): ?>
+                                <ul class="dropdown">
+                                    <?php foreach ($subcategories as $category): ?>
+                                        <li class="dropdown__item">
+                                            <a href="<?php echo esc_url(get_category_link($category->term_id)); ?>"
+                                                class="header-list__link">
+                                                <?php echo esc_html($category->name); ?>
+                                            </a>
+                                        </li>
+                                    <?php endforeach; ?>
+                                </ul>
+                            <?php endif; ?>
                         </li>
+                        <?php $stories = get_category_by_slug('stories'); ?>
+                        <?php if ($stories): ?>
+                            <li class="header-list__item">
+                                <a class="header-list__link" href="<?php echo get_category_link($stories->term_id) ?>">
+                                    Історії
+                                </a>
+                            </li>
+                        <?php
+                        endif;
+                        ?>
                         <li class="header-list__item">
-                            <a class="header-list__link" href="stories.html">
-                                Історії
-                            </a>
-                        </li>
-                        <li class="header-list__item">
-                            <a class="header-list__link" href="interview.html">
+                            <?php $interview_category = get_category_by_slug('interview'); ?>
+                            <a class="header-list__link"
+                                href="<?php echo get_category_link($interview_category->term_id); ?>">
                                 Інтерв'ю
                             </a>
                         </li>
@@ -120,15 +131,16 @@
                                     ));
                                 }
                                 ?>
-                                <?php 
-                                  foreach($subanounces as $category): ?>
-                                <li class="dropdown__item">
-                                    <a href="<?php echo esc_url(get_category_link($category->term_id)) ?>" class="header-list__link">
-                                        <?php echo esc_html($category->name);  ?>
-                                    </a>
-                                </li>
-                                <?php 
-                                  endforeach;
+                                <?php
+                                foreach ($subanounces as $category): ?>
+                                    <li class="dropdown__item">
+                                        <a href="<?php echo esc_url(get_category_link($category->term_id)) ?>"
+                                            class="header-list__link">
+                                            <?php echo esc_html($category->name); ?>
+                                        </a>
+                                    </li>
+                                    <?php
+                                endforeach;
                                 ?>
                             </ul>
                         </li>

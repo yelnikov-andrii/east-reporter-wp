@@ -1,11 +1,15 @@
 <?php
 add_filter('show_admin_bar', '__return_false');
-function disable_jquery() {
+function disable_jquery()
+{
     if (!is_admin()) {  // Отключить только на фронтенде, оставить jQuery в админке
         wp_deregister_script('jquery');  // Удаление стандартного jQuery
     }
 }
+// disable query
 add_action('wp_enqueue_scripts', 'disable_jquery');
+
+// styles and scripts
 
 add_action('wp_enqueue_scripts', 'theme_name_scripts');
 
@@ -22,6 +26,10 @@ function theme_name_scripts()
     wp_enqueue_script('swiper-script', 'https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js');
 
     wp_enqueue_script('main-script', get_template_directory_uri() . '/assets/js/main.js', array(), '1.0.0', true);
+
+    wp_enqueue_script('theme-toggle', get_template_directory_uri() . '/assets/js/theme-toggler.js', array(), null, true);
+
+    wp_enqueue_script('input-typing', get_template_directory_uri() . '/assets/js/input-typing.js', array(), null, true);
 }
 
 add_theme_support('admin-bar', array('callback' => '__return_false'));
@@ -38,4 +46,30 @@ add_theme_support('custom-logo', [
     'header-text' => '',
     'unlink-homepage-logo' => false, // WP 5.5
 ]);
+?>
+
+
+
+<?php
+function render_video_from_pod()
+{
+    // Инициализируем Pods объект для pod 'main-video-frame'
+    $pod = pods('main-video-frame'); // Получаем текущее значение для конкретного поста/страницы
+
+    // Проверяем, существует ли значение поля 'video'
+    if ($pod && $pod->field('video')) {
+        $video_url = $pod->field('video');
+
+        // Проверяем, является ли содержимое ссылкой
+        if (filter_var($video_url, FILTER_VALIDATE_URL)) {
+            // Используем oEmbed для преобразования ссылки в видео
+            return wp_oembed_get($video_url);
+        } else {
+            // Возвращаем предупреждение, если это не ссылка
+            return '<p>Посилання на відео некоректне</p>';
+        }
+    }
+
+    return '';
+}
 ?>

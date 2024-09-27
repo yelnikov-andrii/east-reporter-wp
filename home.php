@@ -15,42 +15,28 @@ Template Name: Home
 
             <div class="main-top__block">
                 <div class="main-top__banner">
-                    <?php
-                    // Инициализируем Pods объект для pod 'main-video-frame'
-                    $pod = pods('main-video-frame', get_the_ID()); // Получаем текущее значение для конкретного поста/страницы
-                    
-                    // Проверяем, существует ли значение поля 'video'
-                    if ($pod && $pod->field('video')) {
-                        $video_url = $pod->field('video');
-                        // Выводим содержимое поля 'video'
-                        if (filter_var($video_url, FILTER_VALIDATE_URL)) {
-                            // Используем oEmbed для преобразования ссылки в видео
-                            echo wp_oembed_get($video_url);
-                        } else {
-                            // Выводим предупреждение, если это не ссылка
-                            echo '<p>Посилання на відео некоректне</p>';
-                        }
-                    }
-                    ?>
+                    <?php echo render_video_from_pod(get_the_ID()); ?>
                 </div>
                 <?php
-                $all_posts_query = new WP_Query(array(
-                    'post_type' => 'post'
+                $news_query = new WP_Query(array(
+                    'post_type' => 'post',
+                    'category_name' => 'news'
                 ));
-                if ($all_posts_query->have_posts()):
+                if ($news_query->have_posts()):
                     echo '<div class="main-top__news swiper"><div class="swiper-wrapper">';
-                    while ($all_posts_query->have_posts()):
-                        $all_posts_query->the_post(); ?>
+                    while ($news_query->have_posts()):
+                        $news_query->the_post(); ?>
                         <a class="main-top__news-card swiper-slide" href="<?php the_permalink(); ?>">
-                            <?php
-                            if (has_post_thumbnail()) {
-                                the_post_thumbnail('large', array(
+                            <?php if (has_post_thumbnail()): ?>
+                                <?php the_post_thumbnail('large', array(
                                     'class' => 'main-top__news-img',
                                     'alt' => get_the_title(),
                                     'title' => 'Thumbnail Image'
-                                ));
-                            }
-                            ?>
+                                )); ?>
+                            <?php else: ?>
+                                <img src="<?php echo get_template_directory_uri(); ?>/assets/images/default-image.png"
+                                    alt="Default Image" class="main-top__news-img" />
+                            <?php endif; ?>
                             <h2 class="main-top__link">
                                 <?php the_title(); ?>
                             </h2>
@@ -80,7 +66,7 @@ Template Name: Home
     </section>
 
     <?php
-    get_template_part('template-parts/main-marquee-categories');
+    get_template_part('template-parts/main/main-marquee-categories');
     ?>
 
     <section class="main-news">
@@ -92,7 +78,7 @@ Template Name: Home
             <div class="swiper-news-1 main-news__block main-news__block--margin" data-aos="fade-up">
                 <?php
                 $category_slug = 'ekologiya';
-                get_template_part('template-parts/main-news-block', null, array('category_slug' => $category_slug));
+                get_template_part('template-parts/main/main-news-block', null, array('category_slug' => $category_slug));
                 ?>
             </div>
 
@@ -103,7 +89,7 @@ Template Name: Home
             <div class="swiper-news-2 main-news__block main-news__block--margin" data-aos="fade-up">
                 <?php
                 $category_slug = 'vijna';
-                get_template_part('template-parts/main-news-block', null, array('category_slug' => $category_slug));
+                get_template_part('template-parts/main/main-news-block', null, array('category_slug' => $category_slug));
                 ?>
             </div>
 
@@ -115,14 +101,14 @@ Template Name: Home
             <div class="swiper-news-3 main-news__block" data-aos="fade-up">
                 <?php
                 $category_slug = 'kultura';
-                get_template_part('template-parts/main-news-block', null, array('category_slug' => $category_slug));
+                get_template_part('template-parts/main/main-news-block', null, array('category_slug' => $category_slug));
                 ?>
             </div>
         </div>
     </section>
 
     <?php
-    get_template_part('template-parts/main-marquee-categories');
+    get_template_part('template-parts/main/main-marquee-categories');
     ?>
 
     <section class="main-important">

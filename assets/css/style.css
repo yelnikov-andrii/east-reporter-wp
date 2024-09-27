@@ -138,7 +138,7 @@ main {
     background: var(--bg-color-main);
     flex-direction: column;
     position: absolute;
-    z-index: 3;
+    z-index: 4;
     left: 0;
     right: 0;
     top: 60px;
@@ -281,7 +281,7 @@ body.light-theme .header__img--white-logo {
   list-style: none;
   padding: 10px;
   margin: 0;
-  z-index: 2;
+  z-index: 3;
   width: max-content;
 }
 @media screen and (min-width: 768px) {
@@ -1359,6 +1359,11 @@ body.light-theme .theme-toggle-svg--sun {
     width: 100%;
   }
 }
+@media screen and (max-width: 425px) {
+  .categories__description {
+    padding: 0;
+  }
+}
 .categories__description-categories {
   display: flex;
   gap: 8px;
@@ -1409,6 +1414,16 @@ body.light-theme .theme-toggle-svg--sun {
   font-size: 22px;
   font-weight: 700;
 }
+@media screen and (max-width: 768px) {
+  .categories__title {
+    font-size: 20px;
+  }
+}
+@media screen and (max-width: 425px) {
+  .categories__title {
+    font-size: 18px;
+  }
+}
 .categories__p {
   font-size: 20px;
   font-weight: 500;
@@ -1440,11 +1455,6 @@ body.light-theme .categories__reading-time svg {
   gap: 32px;
   margin: 0 0 32px 0;
 }
-@media screen and (max-width: 1024px) {
-  .anounces__list {
-    justify-content: center;
-  }
-}
 @media screen and (max-width: 768px) {
   .anounces__list {
     flex-direction: column;
@@ -1468,6 +1478,9 @@ body.light-theme .categories__reading-time svg {
 @media screen and (max-width: 1024px) {
   .anounces__item {
     width: 45%;
+    padding-bottom: 0;
+    height: 100%;
+    min-height: 350px;
   }
 }
 @media screen and (max-width: 768px) {
@@ -1497,6 +1510,11 @@ body.light-theme .categories__reading-time svg {
   opacity: 0;
   transition: opacity 0.4s ease;
 }
+@media screen and (max-width: 1024px) {
+  .anounces__overlay {
+    opacity: 1;
+  }
+}
 .anounces__img {
   width: 100%;
   height: 100%;
@@ -1523,6 +1541,22 @@ body.light-theme .categories__reading-time svg {
   width: 100%;
   text-align: center;
   color: #fff;
+}
+@media screen and (max-width: 1024px) {
+  .anounces__title {
+    visibility: visible;
+    transform: translate(-50%, -90px);
+  }
+}
+@media screen and (max-width: 768px) {
+  .anounces__title {
+    font-size: 20px;
+  }
+}
+@media screen and (max-width: 425px) {
+  .anounces__title {
+    font-size: 18px;
+  }
 }
 .anounces__pagination.pagination {
   margin: 64px 0 0 0;
@@ -1692,14 +1726,14 @@ body.light-theme .categories__reading-time svg {
 .categories-article-aside__list {
   display: flex;
   flex-direction: column;
-  gap: 32px;
+  gap: 20px;
 }
 .categories-article-aside__h2 {
-  margin: 0 0 32px 0;
+  margin: 0 0 64px 0;
 }
 @media screen and (max-width: 768px) {
   .categories-article-aside__h2 {
-    margin: 0 0 16px 0;
+    margin: 0 0 32px 0;
   }
 }
 .categories-article-aside__link {
@@ -1912,9 +1946,55 @@ body.light-theme .categories__reading-time svg {
   object-fit: contain;
 }
 
+.interview iframe {
+  width: 100%;
+  height: auto;
+  aspect-ratio: 16/9;
+}
+@media screen and (max-width: 768px) {
+  .interview__list {
+    display: flex;
+    flex-direction: column;
+    gap: 64px;
+  }
+}
+.interview__item {
+  display: flex;
+  gap: 32px;
+}
+@media screen and (max-width: 768px) {
+  .interview__item {
+    flex-direction: column;
+    gap: 16px;
+  }
+}
+.interview .categories__link {
+  width: 40%;
+}
+@media screen and (max-width: 768px) {
+  .interview .categories__link {
+    width: 100%;
+  }
+}
+.interview__video-container {
+  min-width: 300px;
+  min-height: 300px;
+  flex-grow: 1;
+}
+@media screen and (max-width: 768px) {
+  .interview__video-container {
+    min-width: unset;
+    min-height: unset;
+  }
+}
+
+.search__img {
+  max-height: 400px;
+}
+
 body {
   --header-hover-color: #0057b8;
-  --txt-color: white;
+  --txt-color: #F5F5F5;
   --txt-secondary: #e0e0e0;
   --bg-color-main: #181818;
   --bg-color-secondary: #2a2a2a;
@@ -1923,10 +2003,10 @@ body {
 
 body.light-theme {
   --header-hover-color: #025cc0;
-  --txt-color: #000000;
-  --txt-secondary: #606060;
-  --bg-color-main: #f0f0f0;
-  --bg-color-secondary: #dcdcdc;
+  --txt-color: #181818;
+  --txt-secondary: #2a2a2a;
+  --bg-color-main: #F5F5F5;
+  --bg-color-secondary: #e0e0e0;
   --link-color: #FF8000;
 }
 

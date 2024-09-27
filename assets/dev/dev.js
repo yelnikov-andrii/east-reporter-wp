@@ -1,6 +1,7 @@
 
 import swiper from './swiper-top.js';
 import * as swipers from './swipers-news.js';
+import { themeToggleButton } from './theme-toggler.js';
 
 // toggle mobile menu
 const toggleButton = document.querySelector('.header__toggle');
@@ -43,7 +44,7 @@ window.addEventListener('scroll', function () {
 function scrollFunction() {
     const currentScrollY = window.scrollY; // Текущая позиция скролла
 
-    if (currentScrollY > 1000 && lastScrollY > currentScrollY) {
+    if (currentScrollY > 800 && lastScrollY > currentScrollY) {
         // Если скролл больше 300px и мы скроллим вверх
         scrollTopBtn.classList.add("visible");
     } else {
@@ -79,29 +80,40 @@ document.addEventListener('DOMContentLoaded',
     adjustMainHeight);
 window.addEventListener('resize', adjustMainHeight);
 
-// Theme toggler
+// input typing placeholder
 
+const phrases = ["Пошук новин", "Пошук анонсів", "Пошук інтерв'ю"];
+let indexes = { currentIndex: 0, index: 0 };
+const searchInput = document.querySelector('.search-box__input');
 
-    const themeToggleButton = document.querySelector('#theme-toggle'); // Кнопка для переключения темы
-    let currentTheme = localStorage.getItem('theme') || 'dark'; // Получаем сохраненную тему или задаем тему по умолчанию
+function clearPlaceholder(callback) {
+  if (searchInput.placeholder.length > 0) {
+    searchInput.placeholder = searchInput.placeholder.slice(0, -1);
+    setTimeout(() => clearPlaceholder(callback), 100);
+  } else {
+    callback();
+  }
+}
 
-    // Устанавливаем тему при загрузке страницы
-    if (currentTheme === 'light') {
-        document.body.classList.add('light-theme');
-    }
+function typeText() {
+  const text = phrases[indexes.index];
 
-    // Переключение темы
-    themeToggleButton.addEventListener('click', () => {
-        if (currentTheme === 'light') {
-            document.body.classList.remove('light-theme');
-            currentTheme = 'dark'; // Обновляем переменную после переключения
-        } else {
-            document.body.classList.add('light-theme');
-            currentTheme = 'light'; // Обновляем переменную после переключения
-        }
+  if (indexes.currentIndex < text.length) {
+    searchInput.placeholder += text[indexes.currentIndex];
+    indexes.currentIndex++;
 
-        // Сохраняем новую тему в localStorage
-        localStorage.setItem('theme', currentTheme);
-    });
+    setTimeout(typeText, 100);
+  } else {
+    setTimeout(() => {
+      clearPlaceholder(() => {
+        setTimeout(() => {
+          indexes.index = (indexes.index + 1) % phrases.length;
+          indexes.currentIndex = 0;
+          typeText();
+        }, 1000);
+      });
+    }, 1000);
+  }
+}
 
-
+typeText();

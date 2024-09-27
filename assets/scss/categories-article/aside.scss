@@ -21,14 +21,14 @@
     &__list {
         display: flex;
         flex-direction: column;
-        gap: 32px;
+        gap: 20px;
     }
 
     &__h2 {
-        margin: 0 0 32px 0;
+        margin: 0 0 64px 0;
 
         @media screen and (max-width: 768px) {
-            margin: 0 0 16px 0;
+            margin: 0 0 32px 0;
         }
     }
 
