@@ -1,8 +1,8 @@
 .main-marquee {
   width: 100%;
   overflow: hidden;
-  background: $txt_color;
-  color: $bg_color_main;
+  background: var(--txt-color);
+  color: var(--bg-color-main);
   padding: 8px 0;
   white-space: nowrap;
   position: relative;
@@ -32,7 +32,7 @@
   }
 
   &__link {
-    color: $bg_color_main;
+    color: var(--bg-color-main);
     font-size: 52px;
     font-weight: 700;
     text-transform: uppercase;
@@ -44,7 +44,7 @@
     }
 
     &:hover {
-      color: $header_hover_color;
+      color: var(--header-hover-color);
     }
   }
 }

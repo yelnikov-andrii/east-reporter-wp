@@ -15,13 +15,13 @@
         display: flex;
         gap: 16px;
         align-items: center;
-        font-size: 20px;
+        font-size: 14px;
         margin: 0 0 64px 0;
     }
 
     &__link {
         text-decoration: none;
-        color: $txt_color;
+        color: var(--txt-color);
         transition: color 0.4s ease;
         display: block;
         position: relative;
@@ -33,6 +33,7 @@
         &--breadcrumbs {
             padding: 0;
             margin: 0;
+            font-size: 14px;
         }
 
         &::before {
@@ -42,12 +43,12 @@
             left: 0;
             right: 100%;
             height: 2px;
-            background: $header_hover_color;
+            background: var(--header-hover-color);
             transition: all 0.4s ease;
         }
 
         &:hover {
-            color: $header_hover_color;
+            color: var(--header-hover-color);
 
             &::before {
                 position: absolute;
@@ -56,13 +57,13 @@
                 left: 0;
                 right: 0;
                 height: 2px;
-                background: $header_hover_color;
+                background: var(--header-hover-color);
             }
         }
     }
 
     &__span {
-        font-size: 18px;
+        font-size: 14px;
     }
 
     &__block {
@@ -159,7 +160,7 @@
 
     &__reading-time {
         width: max-content;
-        color: $txt_color;
+        color: var(--txt-color);
         font-size: 16px;
         display: flex;
         gap: 8px;
@@ -176,6 +177,10 @@
         @media screen and (max-width: 1200px) {
             width: 100%;
         }
+
+        @media screen and (max-width: 425px) {
+            padding: 0;
+        }
     }
 
     &__description-categories {
@@ -185,8 +190,8 @@
     }
 
     &__description-link {
-        background: $txt_secondary;
-        color: $bg_color_main;
+        background: var(--txt-secondary);
+        color: var(--bg-color-main);
         position: relative;
         font-weight: 700;
         font-size: 14px;
@@ -202,7 +207,7 @@
         padding: 0 8px;
 
         &:hover {
-            color: $txt_secondary;
+            color: var(--txt-secondary);
 
             &::before {
                 width: 100%;
@@ -216,7 +221,7 @@
             left: 0;
             width: 0;
             height: 100%;
-            background: $header_hover_color;
+            background: var(--header-hover-color);
             transition: width .3s ease-in-out;
             z-index: -1;
         }
@@ -233,13 +238,21 @@
         text-transform: uppercase;
         font-size: 22px;
         font-weight: 700;
+
+        @media screen and (max-width: 768px) {
+            font-size: 20px;
+        }
+
+        @media screen and (max-width: 425px) {
+            font-size: 18px;
+        }
     }
 
     &__p {
         font-size: 20px;
         font-weight: 500;
         margin: 0;
-        color: $link_color;
+        color: var(--link-color);
 
         &--notfound {
             font-size: 28px;
@@ -253,6 +266,14 @@
         font-size: 18px;
         font-weight: 400;
         margin: 0;
-        color: $link_color;
+        color: var(--link-color);
+    }
+}
+
+body.light-theme {
+    .categories__reading-time {
+        svg {
+            fill: #000;
+        }
     }
 }

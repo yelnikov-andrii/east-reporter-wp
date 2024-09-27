@@ -10,7 +10,7 @@
             <a href="/" class="categories__link categories__link--breadcrumbs">
                 На головну
             </a>
-            <svg class="categories__icon" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+            <svg class="categories__icon" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="18" height="18"
                 fill="none" viewBox="0 0 24 24">
                 <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                     d="m9 5 7 7-7 7" />
@@ -24,55 +24,40 @@
             <div class="categories__list">
 
                 <?php if (have_posts()): ?>
-                    <?php
-                    while (have_posts()):
+                    <?php while (have_posts()):
+                        the_post(); ?>
 
-                        the_post();
-                        get_template_part('template-parts/content', 'search');
-                    endwhile;
+                        <?php
+                        // Проверка на наличие определённой категории
+                        $announcements_category_id = get_cat_ID('anounces');
+                        $interview_category_id = get_cat_ID('interview');
 
-                    the_posts_navigation();
+                        if (in_category($announcements_category_id)) {
+                            // Если пост относится к категории "Анонсы"
+                            get_template_part('template-parts/search/content-search-announces');
 
-                    ?>
-                </div>
+                        } elseif (has_category('interview')) {
+                            // Если пост относится к категории "Интервью"
+                            get_template_part('template-parts/search/content-search-interview');
 
-                <aside class="categories__aside categories-article-aside">
-                    <div class="categories-article-aside__block">
-                        <h2 class="categories-article-aside__h2">Recent posts</h2>
-                        <div class="categories-article-aside__list">
-                            <?php
-                            $recent_posts = wp_get_recent_posts(array('numberposts' => 4));
-                            foreach ($recent_posts as $post) {
-                                echo '<a href="' . get_permalink($post["ID"]) . '" class="categories-article__link categories-article-aside__link">';
-                                echo esc_html($post["post_title"]);
-                                echo '</a>';
-                            }
-                            ?>
-                        </div>
-                    </div>
+                        } else {
+                            // По умолчанию - загружается общий шаблон для остальных категорий
+                            get_template_part('template-parts/search/content-search');
+                        }
+                        ?>
 
-                    <div>
-                        <h2 class="categories-article-aside__h2">Categories</h2>
-                        <div class="categories-article-aside__list">
-                            <?php
-                            // Вывод категорий
-                            $categories = get_categories();
-                            foreach ($categories as $category) {
-                                echo '<a href="' . get_category_link($category->term_id) . '" class="categories-article__link categories-article-aside__link">';
-                                echo esc_html($category->name);
-                                echo '</a>';
-                            }
-                            ?>
-                        </div>
-                    </div>
-                </aside>
+                    <?php endwhile; ?>
 
+                    <?php the_posts_navigation(); ?>
+
+                <?php else: ?>
+                    <?php get_template_part('template-parts/search/content-none'); ?>
+                <?php endif; ?>
             </div>
-        <?php else:
-                    get_template_part('template-parts/content', 'none'); ?>
-        <?php endif; ?>
 
+            <?php get_template_part('template-parts/common/aside') ?>
 
+        </div>
     </div>
 </main>
 

@@ -27,7 +27,7 @@
         right: 4px;
         transform: translateY(-50%);
         font-size: 18px;
-        color: $txt_secondary;
+        color: var(--txt-secondary);
         pointer-events: none;
     }
 
@@ -57,7 +57,7 @@
     &__banner {
         width: calc((100% - 16px) / 10 * 6);
         border-radius: 4px;
-        color: $bg_color_main;
+        color: var(--bg-color-main);
         display: flex;
         flex-direction: column;
         justify-content: space-between;
@@ -76,7 +76,7 @@
         }
     }
 
-    &__iframe {
+    iframe {
         width: 100%;
         height: auto;
         aspect-ratio: 16 / 9;
@@ -85,7 +85,7 @@
     &__h2 {
         font-size: 42px;
         font-weight: 700;
-        color: $bg_color_main;
+        color: var(--bg-color-main);
         margin: 0 0 16px 0;
     }
 
@@ -96,8 +96,8 @@
     &__button {
         border: none;
         outline: none;
-        background-color: $bg_color_main;
-        color: $txt_color;
+        background-color: var(--bg-color-main);
+        color: var(--txt-color);
         padding: 10px 5px;
         cursor: pointer;
     }
@@ -131,7 +131,7 @@
             display: flex;
             gap: 8px;
             transition: all 0.4s ease;
-            
+
             @media screen and (max-width: 1024px) {
                 flex-direction: column-reverse;
                 gap: 32px;
@@ -141,11 +141,11 @@
             }
 
             &:hover {
-                background-color: $bg_color_main;
+                background-color: var(--bg-color-main);
                 box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-                
+
                 .main-top__link {
-                    color: $header_hover_color;
+                    color: var(--header-hover-color);
                 }
 
                 .main-top__news-img {
