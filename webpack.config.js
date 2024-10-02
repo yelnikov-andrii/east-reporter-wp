@@ -1,6 +1,5 @@
 const path = require("path");
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
-
 const config = {
   entry: "./assets/dev/dev.js",
   mode: "production",
@@ -31,5 +30,4 @@ const config = {
     })
 ]
 };
-
 module.exports = config;

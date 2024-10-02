@@ -190,7 +190,7 @@ body.light-theme {
             color: var(--txt-color);
         }
 
-        @media screen and (min-width: 768px) {
+        @media screen and (min-width: 769px) {
             &:hover {
                 &>.header-list__link {
                     color: var(--header-hover-color);

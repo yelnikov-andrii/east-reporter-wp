@@ -1,8 +1,4 @@
-<?php
-/*
-Template Name: Home
-*/
-?>
+<?php /* Template Name: Home */ ?>
 
 <?php get_header(); ?>
 
@@ -15,7 +11,31 @@ Template Name: Home
 
             <div class="main-top__block">
                 <div class="main-top__banner">
-                    <?php echo render_video_from_pod(get_the_ID()); ?>
+                    <?php
+                    $pod = pods('main-video-frame');
+                    $video_url = esc_url($pod->field('video'));
+                    preg_match('/(?:https?:\/\/)?(?:www\.)?(?:youtube\.com\/(?:[^\/\n\s]+\/\S+\/|(?:v|e(?:mbed)?)\/|.*[?&]v=)|youtu\.be\/)([^&\n]{11})/', $video_url, $matches);
+                    $video_id = isset($matches[1]) ? esc_attr($matches[1]) : '';
+                    ?>
+                    <div class="youtube-placeholder" data-video-id="<?php echo $video_id; ?>">
+                        <?php if ($video_id): ?>
+                            <img src="https://img.youtube.com/vi/<?php echo $video_id; ?>/hqdefault.jpg"
+                                alt="Video Thumbnail">
+                            <button class="youtube-play-button" aria-label="Відтворити відео">
+                                <svg style="width: 100px; height: 100px" viewBox="0 0 1024 1024" version="1.1"
+                                    xmlns="http://www.w3.org/2000/svg">
+                                    <path
+                                        d="M658.2 523.8l-151.9 87.7c-31.6 18.2-71-4.6-71-41V395c0-36.4 39.5-59.2 71-41l151.9 87.7c31.5 18.4 31.5 63.9 0 82.1z"
+                                        fill="#025cc0" />
+                                    <path
+                                        d="M533.2 870c-217.2 0-394-176.7-394-394S316 82 533.2 82s394 176.7 394 394-176.8 394-394 394z m0-737.1C344 132.9 190.1 286.8 190.1 476S344 819.1 533.2 819.1 876.3 665.2 876.3 476 722.4 132.9 533.2 132.9z"
+                                        fill="#025cc0" />
+                                </svg>
+                            </button>
+                        <?php else: ?>
+                            <p>Відео недоступне</p>
+                        <?php endif; ?>
+                    </div>
                 </div>
                 <?php
                 $news_query = new WP_Query(array(
@@ -41,26 +61,31 @@ Template Name: Home
                                 <?php the_title(); ?>
                             </h2>
                         </a>
-                    <?php endwhile;
-                    echo '</div>
-              </div>
-              <div class="swiper-navigation">
-                  <div class="swiper-button-prev"><svg xmlns="http://www.w3.org/2000/svg" height="32" width="32" viewBox="0 0 384 512">
-            <path
-                d="M214.6 41.4c-12.5-12.5-32.8-12.5-45.3 0l-160 160c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0L160 141.2V448c0 17.7 14.3 32 32 32s32-14.3 32-32V141.2L329.4 246.6c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3l-160-160z">
-            </path>
-        </svg></div>
-                  <div class="swiper-button-next"><svg xmlns="http://www.w3.org/2000/svg" height="32" width="32" viewBox="0 0 384 512">
-            <path
-                d="M214.6 41.4c-12.5-12.5-32.8-12.5-45.3 0l-160 160c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0L160 141.2V448c0 17.7 14.3 32 32 32s32-14.3 32-32V141.2L329.4 246.6c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3l-160-160z">
-            </path>
-        </svg></div>
-              </div>
-            </div>';
+                    <?php endwhile; ?>
+                </div>
+            </div>
+            <div class="swiper-navigation">
+                <button class="swiper-button swiper-button-prev" aria-label="Попередній слайд">
+                    <svg xmlns="http://www.w3.org/2000/svg" height="32" width="32" viewBox="0 0 384 512">
+                        <path
+                            d="M214.6 41.4c-12.5-12.5-32.8-12.5-45.3 0l-160 160c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0L160 141.2V448c0 17.7 14.3 32 32 32s32-14.3 32-32V141.2L329.4 246.6c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3l-160-160z">
+                        </path>
+                    </svg>
+                </button>
+                <button class="swiper-button swiper-button-next" aria-label="Наступний слайд"><svg
+                        xmlns="http://www.w3.org/2000/svg" height="32" width="32" viewBox="0 0 384 512">
+                        <path
+                            d="M214.6 41.4c-12.5-12.5-32.8-12.5-45.3 0l-160 160c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0L160 141.2V448c0 17.7 14.3 32 32 32s32-14.3 32-32V141.2L329.4 246.6c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3l-160-160z">
+                        </path>
+                    </svg>
+                </button>
+            </div>
+            </div>
+            <?php
                 endif;
                 wp_reset_postdata();
                 ?>
-            </div>
+        </div>
 
         </div>
     </section>

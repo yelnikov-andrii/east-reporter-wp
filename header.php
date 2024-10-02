@@ -161,7 +161,7 @@ $theme = isset($_COOKIE['theme']) ? $_COOKIE['theme'] : 'dark'; // Получа�
                             </a>
                         </li>
                         <li>
-                            <button id="theme-toggle">
+                            <button id="theme-toggle" aria-label="Перемкнути тему світла/темна">
                                 <svg class="theme-toggle-svg--sun" height="36px" id="Layer_1" version="1.1"
                                     viewBox="0 0 512 512" width="36x" xml:space="preserve"
                                     xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">

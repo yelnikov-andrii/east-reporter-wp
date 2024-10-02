@@ -9,6 +9,8 @@ function disable_jquery()
 // disable query
 add_action('wp_enqueue_scripts', 'disable_jquery');
 
+
+
 // styles and scripts
 
 add_action('wp_enqueue_scripts', 'theme_name_scripts');
@@ -23,13 +25,11 @@ function theme_name_scripts()
 
     wp_enqueue_script('aos-script', 'https://unpkg.com/aos@2.3.4/dist/aos.js', array(), '1.3.4', true);
 
+    wp_enqueue_script('lazyframe-script', 'https://cdn.jsdelivr.net/npm/lazyframe/dist/lazyframe.min.js');
+
     wp_enqueue_script('swiper-script', 'https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js');
 
     wp_enqueue_script('main-script', get_template_directory_uri() . '/assets/js/main.js', array(), '1.0.0', true);
-
-    wp_enqueue_script('theme-toggle', get_template_directory_uri() . '/assets/js/theme-toggler.js', array(), null, true);
-
-    wp_enqueue_script('input-typing', get_template_directory_uri() . '/assets/js/input-typing.js', array(), null, true);
 }
 
 add_theme_support('admin-bar', array('callback' => '__return_false'));

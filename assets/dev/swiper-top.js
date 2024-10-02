@@ -19,7 +19,7 @@ if (swiperEl) {
 
 
         breakpoints: {
-            1024: {
+            1200: {
                 direction: 'vertical',
                 slidesPerView: 2,
                 slidesPerGroup: 2,

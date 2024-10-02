@@ -1,13 +1,4 @@
 @font-face {
-    font-family: 'Racama';
-    src: url('../fonts/Racama.otf') format('opentype'),
-        url('../../fonts/Racama-Regular.woff2') format('woff2'),
-        url('../fonts/Racama-Regular.woff') format('woff');
-    font-weight: normal;
-    font-style: normal;
-}
-
-@font-face {
     font-family: 'Pobeda';
     src: url('../fonts/pobeda-regular.ttf') format('truetype');
 }
@@ -18,8 +9,8 @@
     font-style: bold;
     src: url('../fonts/pobeda-bold.ttf') format('truetype'),
         url('../fonts/pobeda-bold.otf') format('opentype'),
-        url('../../fonts/pobeda-bold.woff') format('woff'),
-        url('../../fonts/pobeda-bold.woff2') format('woff2'),
+        url('../fonts/pobeda-bold.woff') format('woff'),
+        url('../fonts/pobeda-bold.woff2') format('woff2'),
 }
 
 @font-face {

@@ -19,7 +19,7 @@ if (swiperOneRef) {
         simulateTouch: true,
 
         autoplay: {
-            delay: 2000,
+            delay: 5000,
             disableOnInteraction: false,
         },
 
@@ -95,7 +95,7 @@ if (swiperThreeRef) {
         spaceBetween: 16,
         simulateTouch: true,
         autoplay: {
-            delay: 2000,
+            delay: 5000,
             disableOnInteraction: false,
         },
     

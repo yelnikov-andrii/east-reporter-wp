@@ -4,6 +4,10 @@
     &__block {
         display: flex;
         justify-content: space-between;
+
+        @media screen and (max-width: 768px) {
+            flex-wrap: wrap;
+        }
     }
 
     &__list {
@@ -17,6 +21,10 @@
     &__social-media {
         width: 50%;
 
+        @media screen and (max-width: 768px) {
+            width: 100%;
+        }
+
         &-list {
             display: flex;
             gap: 32px;
@@ -26,11 +34,8 @@
 
             @media screen and (max-width: 768px) {
                 flex-wrap: wrap;
-                justify-content: flex-end;
-            }
-
-            @media screen and (max-width: 425px) {
-                flex-direction: column;
+                justify-content: center;
+                margin: 32px 0 0 0;
             }
         }
 

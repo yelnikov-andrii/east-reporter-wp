@@ -22,10 +22,11 @@
         flex-direction: column;
         justify-content: space-between;
 
-        @media screen and (max-width: 1024px) {
+        @media screen and (max-width: 1200px) {
             flex-direction: row;
             justify-content: space-between;
         }
+
         /* Center the navigation buttons */
 
         @media screen and (max-width: 768px) {
@@ -35,40 +36,26 @@
         }
     }
 
-    &-swiper-button {
+    &-button {
         width: 40px;
-        /* Adjust the width */
         height: 40px;
-        /* Adjust the height */
-        background-color: var(--header-hover-color);
-        /* Set background color */
-        color: var(--txt-color);
-        /* Set text/icon color */
+        background: var(--header-hover-color);
+        color: var(--bg-color-main);
         border-radius: 50%;
-        /* Optional: make them circular */
         display: flex;
         align-items: center;
         justify-content: center;
-
-        &:hover {
-            background-color: darken(black, 10%);
-            /* Darken on hover */
-        }
+        border: none;
     }
 }
 
 .main-top .swiper-navigation .swiper-button-prev,
 .main-top .swiper-navigation .swiper-button-next {
     width: 24px;
-    /* Adjust the width */
     height: 24px;
-    /* Adjust the height */
     background-color: var(--header-hover-color);
-    /* Set background color */
     color: var(--txt-color);
-    /* Set text/icon color */
     border-radius: 50%;
-    /* Optional: make them circular */
     position: static;
     display: flex;
     justify-content: center;
@@ -78,21 +65,20 @@
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
 
     &:active {
-        background-color: darken(black, 10%); // Например, темнее на 10%
         opacity: 1;
     }
 
     svg {
         width: 12px;
         height: 12px;
+
+        path {
+            fill: var(--bg-color-main);
+        }
     }
 
     &::after {
         display: none;
-    }
-
-    &:hover {
-        background-color: darken(black, 10%);
     }
 }
 
@@ -107,7 +93,7 @@
         }
     }
 
-    @media screen and (max-width: 1024px) {
+    @media screen and (max-width: 1200px) {
         transform: rotate(90deg);
 
         &:hover {
@@ -117,19 +103,19 @@
 }
 
 .main-top .swiper-navigation .swiper-button-prev {
-    @media screen and (max-width: 1024px) {
+    @media screen and (max-width: 1200px) {
         transform: rotate(-90deg);
     }
 
     @media (hover: hover) {
         &:hover {
             background-color: var(--link-color);
-            transform: scale(1.1),;
+            transform: scale(1.1), rotate(180deg);
             box-shadow: 0 6px 10px rgba(0, 0, 0, 0.3);
         }
     }
 
-    @media screen and (max-width: 1024px) {
+    @media screen and (max-width: 1200px) {
         &:hover {
             transform: scale(1.1), rotate(-90deg);
         }

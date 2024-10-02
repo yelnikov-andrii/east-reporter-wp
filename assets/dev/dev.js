@@ -2,6 +2,7 @@
 import swiper from './swiper-top.js';
 import * as swipers from './swipers-news.js';
 import { themeToggleButton } from './theme-toggler.js';
+import '../css/style.css';
 
 // toggle mobile menu
 const toggleButton = document.querySelector('.header__toggle');
@@ -117,3 +118,23 @@ function typeText() {
 }
 
 typeText();
+
+// Lazyframe youtube
+
+document.querySelectorAll('.youtube-placeholder').forEach(placeholder => {
+    placeholder.addEventListener('click', function() {
+        console.log('click youtube placeholder');
+        const videoId = this.getAttribute('data-video-id');
+        const iframe = document.createElement('iframe');
+        iframe.setAttribute('src', `https://www.youtube.com/embed/${videoId}?autoplay=1`);
+        iframe.setAttribute('frameborder', '0');
+        iframe.setAttribute('allow', 'accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture');
+        iframe.setAttribute('allowfullscreen', '');
+        iframe.style.width = '100%';
+        iframe.style.height = '100%';
+
+        // Очистите плейсхолдер и добавьте iframe
+        this.innerHTML = '';
+        this.appendChild(iframe);
+    });
+});
