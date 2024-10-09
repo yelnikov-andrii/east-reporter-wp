@@ -14,7 +14,7 @@
                         ?>
                         <div class="youtube-placeholder" data-video-id="<?php echo $video_id; ?>">
                             <?php if ($video_id): ?>
-                                <img src="https://img.youtube.com/vi/<?php echo $video_id; ?>/hqdefault.jpg" alt="Video Thumbnail">
+                                <img src="https://img.youtube.com/vi/<?php echo $video_id; ?>/maxresdefault.jpg" alt="Video Thumbnail">
                                 <button class="youtube-play-button" aria-label="Відтворити відео">
                                     <svg style="width: 100px; height: 100px" viewBox="0 0 1024 1024" version="1.1"
                                         xmlns="http://www.w3.org/2000/svg">
@@ -27,7 +27,11 @@
                                     </svg>
                                 </button>
                             <?php else: ?>
-                                <p>Відео недоступне</p>
+                                <p>
+                                    <?php
+                                      echo pll__('Відео недоступне');
+                                    ?>
+                                </p>
                             <?php endif; ?>
                         </div>
                     </div>

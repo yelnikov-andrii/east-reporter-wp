@@ -6,7 +6,6 @@
         <a class="categories__link" href="<?php the_permalink(); ?>">
             <h2 class="categories__title">
                 <?php the_title(); ?>
-                anounces
             </h2>
         </a>
     </div>

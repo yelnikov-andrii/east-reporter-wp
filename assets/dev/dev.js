@@ -10,6 +10,7 @@ const headerList = document.querySelector('.header-list');
 const headerWrapper = document.querySelector('.header__wrapper-list');
 
 toggleButton.addEventListener('click', () => {
+    console.log('menu clicked ----')
     headerList.classList.toggle('active');
     headerWrapper.classList.toggle('active');
     toggleButton.classList.toggle('active');
@@ -83,9 +84,16 @@ window.addEventListener('resize', adjustMainHeight);
 
 // input typing placeholder
 
-const phrases = ["Пошук новин", "Пошук анонсів", "Пошук інтерв'ю"];
+// const phrases = ["Пошук новин", "Пошук анонсів", "Пошук інтерв'ю"];
+
 let indexes = { currentIndex: 0, index: 0 };
 const searchInput = document.querySelector('.search-box__input');
+let phrases = [];
+
+if (searchInput) {
+  phrases = JSON.parse(searchInput.getAttribute('data-phrases'));
+  typeText();
+}
 
 function clearPlaceholder(callback) {
   if (searchInput.placeholder.length > 0) {
@@ -117,8 +125,6 @@ function typeText() {
   }
 }
 
-typeText();
-
 // Lazyframe youtube
 
 document.querySelectorAll('.youtube-placeholder').forEach(placeholder => {
@@ -137,4 +143,24 @@ document.querySelectorAll('.youtube-placeholder').forEach(placeholder => {
         this.innerHTML = '';
         this.appendChild(iframe);
     });
+});
+
+// langauge switcher 
+
+const langToggleButton = document.querySelector('.language-switcher__toggle');
+const langaugesList = document.querySelector('.language-switcher__dropdown');
+langToggleButton.addEventListener('click', () => {
+  langaugesList.classList.toggle('active');
+});
+
+langaugesList.addEventListener('click', () => {
+  langaugesList.classList.remove('active');
+});
+
+document.addEventListener('click', (event) => {
+  const isClickInside = langToggleButton.contains(event.target) || langaugesList.contains(event.target);
+
+  if (!isClickInside) {
+    langaugesList.classList.remove('active');
+  }
 });

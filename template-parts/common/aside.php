@@ -1,14 +1,18 @@
 <aside class="categories-article__aside categories-article-aside">
     <div class="categories-article-aside__block">
         <h2 class="categories-article__h2">
-            Пошук по сайту
+            <?php
+              echo pll__('Пошук по сайту');
+            ?>
         </h2>
         <?php get_search_form(); // Вставка кастомной формы поиска ?>
     </div>
 
     <div class="categories-article-aside__block">
         <h2 class="categories-article-aside__h2">
-            Нещодавні новини
+            <?php
+              echo pll__('Нещодавні новини');
+            ?>
         </h2>
         <div class="categories-article-aside__list">
             <?php
@@ -26,7 +30,7 @@
                 <?php endwhile;
                 wp_reset_postdata(); // Сброс глобальной переменной $post
             else:
-                echo 'Посты не найдены.';
+                echo pll__('Посты не найдены');
             endif;
             ?>
 
@@ -35,7 +39,7 @@
 
     <div class="categories-article-aside__block">
         <h2 class="categories-article-aside__h2">
-            Категорії
+            <?php echo pll__('Категорії'); ?>
         </h2>
         <div class="categories-article-aside__list">
             <?php
@@ -53,7 +57,7 @@
                     echo '</a>';
                 }
             } else {
-                echo '<p>Немає категорій.</p>'; // Если категорий нет
+                echo pll__('Категорії відсутні');
             }
             ?>
         </div>
@@ -61,11 +65,21 @@
 
     <div>
         <h2 class="categories-article-aside__h2">
-            Новини
+            <?php echo pll__('Новини') ?>
         </h2>
         <div class="categories-article-aside__list">
             <?php
-            $parent_category = get_category_by_slug('news');
+            $current_lang = function_exists('pll_current_language') ? pll_current_language() : 'uk';
+
+            // Задаем slugs для категорий на разных языках
+            $category_slugs = array(
+                'news' => array(
+                    'uk' => 'news',       // Украинский
+                    'en' => 'news-en',   // Английский
+                    'de' => 'news-de'   // Немецкий (пример)
+                )
+            );
+            $parent_category = get_category_by_slug($category_slugs['news'][$current_lang]);
 
             if ($parent_category) {
                 $categories = get_categories(array('parent' => $parent_category->term_id));
@@ -80,7 +94,7 @@
                     echo '</a>';
                 }
             } else {
-                echo '<p>Немає категорій.</p>'; // Если категорий нет
+                echo pll__('Категорії відсутні');
             }
             ?>
         </div>

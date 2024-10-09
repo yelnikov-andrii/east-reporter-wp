@@ -9,6 +9,29 @@ function disable_jquery()
 // disable query
 add_action('wp_enqueue_scripts', 'disable_jquery');
 
+// menu registration
+
+function my_theme_setup() {
+    register_nav_menus(array(
+        'menu' => __('menu', 'East Reporter'),
+    ));
+}
+add_action('after_setup_theme', 'my_theme_setup');
+
+// pll string registration
+
+if (function_exists('pll_register_string')) {
+    pll_register_string('phone_label', 'Phone_str', 'Контакты');
+    pll_register_string('no_posts_found', 'Посты не найдены', 'Сообщения');
+    pll_register_string('video_not_found', 'Відео недоступне', 'Сообщения');
+    pll_register_string('categories_not_found', 'Категорії відсутні', 'Сообщения');
+    pll_register_string('no_data_found', 'За запитом нічого не знайдено', 'Сообщения');
+    pll_register_string('news', 'Новини', 'Заголовки');
+    pll_register_string('main_page', 'Головна сторінка', 'Заголовки');
+    pll_register_string('search_on_website', 'Пошук по сайту', 'Заголовки');
+    pll_register_string('recent_news', 'Нещодавні новини', 'Заголовки');
+    pll_register_string('categories', 'Категорії', 'Заголовки');
+}
 
 
 // styles and scripts

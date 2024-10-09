@@ -4,6 +4,10 @@
     outline: none;
     padding: 0;
     cursor: pointer;
+
+    @media screen and (max-width: 1024px) {
+        order: 2;
+    }
 }
 
 .theme-toggle-svg--moon {

@@ -5,7 +5,9 @@
 
         <nav class="categories-article__breadcrumbs">
             <a class="categories-article__link" href="/">
-                На головну
+                <?php
+                    echo pll__('Головна сторінка');
+                ?>
             </a>
             <svg class="categories__icon" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="18" height="18"
                 fill="none" viewBox="0 0 24 24">
@@ -40,16 +42,24 @@
                         <?php if (has_category('interview')): ?>
                             <article id="post-<?php the_ID(); ?>" class="categories-article__article">
                                 <h1 class="categories-article__h1"><?php the_title(); ?></h1>
+
                                 <div class="interview__video-container">
                                     <?php
                                     $content = get_the_content();
 
+                                    // Ищем YouTube ссылку в контенте
                                     preg_match('/(?:https?:\/\/)?(?:www\.)?(?:youtube\.com\/(?:[^\/\n\s]+\/\S+\/|(?:v|e(?:mbed)?)\/|.*[?&]v=)|youtu\.be\/)([^&\n]{11})/', $content, $matches);
 
                                     $video_id = isset($matches[1]) ? esc_attr($matches[1]) : '';
+
+                                    // Удаляем YouTube-ссылку из контента
+                                    if ($video_id) {
+                                        $content = preg_replace('/(?:https?:\/\/)?(?:www\.)?(?:youtube\.com\/(?:[^\/\n\s]+\/\S+\/|(?:v|e(?:mbed)?)\/|.*[?&]v=)|youtu\.be\/)([^&\n]{11})/', '', $content);
+                                    }
                                     ?>
-                                    <div class="youtube-placeholder" data-video-id="<?php echo $video_id; ?>">
-                                        <?php if ($video_id): ?>
+
+                                    <?php if ($video_id): ?>
+                                        <div class="youtube-placeholder" data-video-id="<?php echo $video_id; ?>">
                                             <img src="https://img.youtube.com/vi/<?php echo $video_id; ?>/hqdefault.jpg"
                                                 alt="Video Thumbnail">
                                             <button class="youtube-play-button" aria-label="Відтворити відео">
@@ -63,12 +73,20 @@
                                                         fill="#025cc0" />
                                                 </svg>
                                             </button>
-                                        <?php else: ?>
-                                            <p>Відео недоступне</p>
-                                        <?php endif; ?>
-                                    </div>
+                                        </div>
+                                    <?php else: ?>
+                                        <p>Відео недоступне</p>
+                                    <?php endif; ?>
+                                </div>
+
+                                <div class="categories-article__content">
+                                    <?php
+                                    // Выводим очищенный контент без видео
+                                    echo wpautop($content);
+                                    ?>
                                 </div>
                             </article>
+
                             <?php
                         else:
                             ?>
@@ -123,48 +141,48 @@
 
                 <?php
                 $categories = get_the_category();
-                    if ($categories) {
-                        $category_ids = array();
-                        foreach ($categories as $category) {
-                            $category_ids[] = $category->term_id;
-                        }
-
-                        $related_posts_args = array(
-                            'category__in' => $category_ids,
-                            'post__not_in' => array(get_the_ID()),
-                            'posts_per_page' => -1,
-                            'orderby' => 'rand'
-                        );
+                if ($categories) {
+                    $category_ids = array();
+                    foreach ($categories as $category) {
+                        $category_ids[] = $category->term_id;
                     }
 
-                        $related_posts_query = new WP_Query($related_posts_args);
+                    $related_posts_args = array(
+                        'category__in' => $category_ids,
+                        'post__not_in' => array(get_the_ID()),
+                        'posts_per_page' => -1,
+                        'orderby' => 'rand'
+                    );
+                }
 
-                        if ($related_posts_query->have_posts()):
-                        ?>
-                <h2 class="categories-article__h2">
-                    Пов'язані пости
-                </h2>
-                <div class="categories-article__related related-posts">
-                    <?php
-                            while ($related_posts_query->have_posts()) {
-                                $related_posts_query->the_post(); ?>
-                                <a class="related-posts__post" href="<?php the_permalink(); ?>">
-                                    <?php
-                                    if (has_post_thumbnail()) {
-                                        the_post_thumbnail('medium', ['class' => 'categories-article__img']);
-                                    }
-                                    ?>
-                                    <h2 class="categories-article__title related-posts__title">
-                                        <?php the_title(); ?>
-                                    </h2>
-                                    <p>
-                                        <?php the_date(); ?>
-                                    </p>
-                                </a>
-                            <?php }
-                        wp_reset_postdata();
+                $related_posts_query = new WP_Query($related_posts_args);
+
+                if ($related_posts_query->have_posts()):
                     ?>
-                </div>
+                    <h2 class="categories-article__h2">
+                        Пов'язані пости
+                    </h2>
+                    <div class="categories-article__related related-posts">
+                        <?php
+                        while ($related_posts_query->have_posts()) {
+                            $related_posts_query->the_post(); ?>
+                            <a class="related-posts__post" href="<?php the_permalink(); ?>">
+                                <?php
+                                if (has_post_thumbnail()) {
+                                    the_post_thumbnail('medium', ['class' => 'categories-article__img']);
+                                }
+                                ?>
+                                <h2 class="categories-article__title related-posts__title">
+                                    <?php the_title(); ?>
+                                </h2>
+                                <p>
+                                    <?php the_date(); ?>
+                                </p>
+                            </a>
+                        <?php }
+                        wp_reset_postdata();
+                        ?>
+                    </div>
                 <?php endif; ?>
             </div>
 

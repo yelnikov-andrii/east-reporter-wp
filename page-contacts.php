@@ -9,7 +9,7 @@ Template Name: Contacts
 <main class="contacts">
     <div class="container">
         <h1 class="contacts__h1 h1">
-            Контакти
+            <?php the_title( ); ?>
         </h1>
         <div class="contacts__info">
             <?php 
@@ -19,7 +19,7 @@ Template Name: Contacts
                 $phone = $contacts_pod->field('phone');
               }
             ?>
-            <p><strong>Телефон:</strong> <?php echo esc_html($phone) ?></p>
+            <p><strong><?php echo pll__('Phone_str'); ?>:</strong> <?php echo esc_html($phone) ?></p>
             <p><strong>Email:</strong> <?php echo esc_html($email) ?></p>
         </div>
     </div>

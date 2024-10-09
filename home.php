@@ -12,14 +12,44 @@
             <div class="main-top__block">
                 <div class="main-top__banner">
                     <?php
-                    $pod = pods('main-video-frame');
-                    $video_url = esc_url($pod->field('video'));
-                    preg_match('/(?:https?:\/\/)?(?:www\.)?(?:youtube\.com\/(?:[^\/\n\s]+\/\S+\/|(?:v|e(?:mbed)?)\/|.*[?&]v=)|youtu\.be\/)([^&\n]{11})/', $video_url, $matches);
-                    $video_id = isset($matches[1]) ? esc_attr($matches[1]) : '';
+                        $current_lang = function_exists('pll_current_language') ? pll_current_language() : 'uk';
+
+                        // Задаем slugs для категорий на разных языках
+                        $category_slugs = array(
+                            'interview' => array(
+                                'uk' => 'interview',      // Украинский
+                                'en' => 'interview-en',     // Английский
+                                'de' => 'interview-de'      // Немецкий (пример)
+                            )
+                        );
+
+                        $interview_slug = isset($category_slugs['interview'][$current_lang]) ? $category_slugs['interview'][$current_lang] : $category_slugs['interview']['uk'];
+
+                        $interview_posts = get_posts(array(
+                            'category_name' => $interview_slug, // Используем slug для текущего языка
+                            'posts_per_page' => -1, // Получаем все посты категории
+                            'orderby' => 'rand',    // Сортировка случайным образом
+                        ));
+
+                        if ($interview_posts) {
+                            $random_post = $interview_posts[0];
+
+                            $random_post_content = $random_post->post_content;
+
+                            preg_match('/(?:https?:\/\/)?(?:www\.)?(?:youtube\.com\/(?:[^\/\n\s]+\/\S+\/|(?:v|e(?:mbed)?)\/|.*[?&]v=)|youtu\.be\/)([^&\n]{11})/', $random_post_content, $matches);
+
+                            $video_id = isset($matches[1]) ? esc_attr($matches[1]) : '';
+                        }
+
+
+                        // $pod = pods('main-video-frame');
+                        // $video_url = esc_url($pod->field('video'));
+                        // preg_match('/(?:https?:\/\/)?(?:www\.)?(?:youtube\.com\/(?:[^\/\n\s]+\/\S+\/|(?:v|e(?:mbed)?)\/|.*[?&]v=)|youtu\.be\/)([^&\n]{11})/', $video_url, $matches);
+                        // $video_id = isset($matches[1]) ? esc_attr($matches[1]) : '';
                     ?>
                     <div class="youtube-placeholder" data-video-id="<?php echo $video_id; ?>">
                         <?php if ($video_id): ?>
-                            <img src="https://img.youtube.com/vi/<?php echo $video_id; ?>/hqdefault.jpg"
+                            <img src="https://img.youtube.com/vi/<?php echo $video_id; ?>/maxresdefault.jpg"
                                 alt="Video Thumbnail">
                             <button class="youtube-play-button" aria-label="Відтворити відео">
                                 <svg style="width: 100px; height: 100px" viewBox="0 0 1024 1024" version="1.1"
@@ -38,9 +68,11 @@
                     </div>
                 </div>
                 <?php
+                $current_lang = pll_current_language();
+                $category_slug = ($current_lang === 'en') ? 'news-en' : (($current_lang === 'de') ? 'news-de' : 'news');
                 $news_query = new WP_Query(array(
                     'post_type' => 'post',
-                    'category_name' => 'news'
+                    'category_name' => $category_slug
                 ));
                 if ($news_query->have_posts()):
                     echo '<div class="main-top__news swiper"><div class="swiper-wrapper">';
@@ -96,39 +128,41 @@
 
     <section class="main-news">
         <div class="container">
-            <h2 class="main-news__title" data-aos="fade-up">
-                Екологія
-            </h2>
+            <?php
+            $current_lang = pll_current_language();
+            $news_slug = ($current_lang === 'en') ? 'news-en' : (($current_lang === 'de') ? 'news-de' : 'news');
+            $category = get_category_by_slug($news_slug);
+            $categories = get_categories(array(
+                'child_of' => $category->term_id,
+                'orderby' => 'count',
+                'order' => 'DESC'
+            ));
+            $coefficient = 1;
 
-            <div class="swiper-news-1 main-news__block main-news__block--margin" data-aos="fade-up">
-                <?php
-                $category_slug = 'ekologiya';
-                get_template_part('template-parts/main/main-news-block', null, array('category_slug' => $category_slug));
+            foreach ($categories as $category):
+
+                if ($coefficient > 3)
+                    break;
                 ?>
-            </div>
 
-            <h2 class="main-news__title" data-aos="fade-up">
-                Війна
-            </h2>
 
-            <div class="swiper-news-2 main-news__block main-news__block--margin" data-aos="fade-up">
+                <h2 class="main-news__title" data-aos="fade-up">
+                    <?php echo esc_html($category->name); ?>
+                </h2>
+
+                <div class="swiper-news-<?php echo $coefficient; ?> main-news__block main-news__block--margin"
+                    data-aos="fade-up">
+                    <?php
+                    $category_slug = $category->slug;
+                    get_template_part('template-parts/main/main-news-block', null, array('category_slug' => $category_slug));
+                    ?>
+                </div>
+
                 <?php
-                $category_slug = 'vijna';
-                get_template_part('template-parts/main/main-news-block', null, array('category_slug' => $category_slug));
-                ?>
-            </div>
+                $coefficient++;
+            endforeach;
 
-
-            <h2 class="main-news__title" data-aos="fade-up">
-                Культура
-            </h2>
-
-            <div class="swiper-news-3 main-news__block" data-aos="fade-up">
-                <?php
-                $category_slug = 'kultura';
-                get_template_part('template-parts/main/main-news-block', null, array('category_slug' => $category_slug));
-                ?>
-            </div>
+            ?>
         </div>
     </section>
 
@@ -141,17 +175,21 @@
             <aside class="main-important__aside">
                 <div>
                     <h2 class="main-important__title">
-                        Новини
+                        <?php
+                            echo pll__('Новини');
+                        ?>
                     </h2>
 
                     <ul class="main-important__list">
                         <?php
-                        $parent_category = get_category_by_slug('news');
+                        $current_lang = pll_current_language();
+                        $news_slug = ($current_lang === 'en') ? 'news-en' : (($current_lang === 'de') ? 'news-de' : 'news');
+                        $parent_category = get_category_by_slug($news_slug);
                         if ($parent_category) {
                             // Получаем подкатегории категории "news"
                             $subcategories = get_categories(array(
                                 'child_of' => $parent_category->term_id, // ID родительской категории
-                                'hide_empty' => false, // Показывать пустые категории или нет
+                                'hide_empty' => true, // Показывать пустые категории или нет
                                 'orderby' => 'name',
                                 'order' => 'ASC'
                             ));
@@ -170,13 +208,22 @@
             </aside>
             <div class="main-important__banner" data-aos="fade-right">
                 <h5>
-                    Будьте в курсі
-                    <br />
-                    всіх новин з
-                    <br />
-                    <span class="main-important__span">
-                        East Reporter
-                    </span>
+                    <?php
+                    if (function_exists('pll_current_language')) {
+                        // В зависимости от текущего языка выводим соответствующий текст
+                        if ($current_lang === 'en') {
+                            echo 'Stay informed<br /> about all news from<br /><span class="main-important__span">East Reporter</span>';
+                        } elseif ($current_lang === 'de') {
+                            echo 'Bleiben Sie informiert<br /> über alle Nachrichten aus<br /><span class="main-important__span">East Reporter</span>';
+                        } else {
+                            // По умолчанию, например, для украинского языка
+                            echo 'Будьте в курсі<br /> всіх новин з<br /><span class="main-important__span">East Reporter</span>';
+                        }
+                    } else {
+                        // Если функция не существует, по умолчанию
+                        echo 'Будьте в курсі<br /> всіх новин з<br /><span class="main-important__span">East Reporter</span>';
+                    }
+                    ?>
                 </h5>
             </div>
         </div>

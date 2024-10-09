@@ -6,10 +6,15 @@
     }
 
     &__list {
+        display: flex;
+        flex-direction: column;
+        gap: 64px;
+        padding: 0 16px 0 0;
+
         @media screen and (max-width: 768px) {
             display: flex;
             flex-direction: column;
-            gap: 64px;
+            gap: 32px;
         }
     }
 

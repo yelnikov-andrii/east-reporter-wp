@@ -67,6 +67,10 @@
         display: flex;
         justify-content: space-between;
 
+        & .wp-block-embed {
+            display: none;
+        }
+
         @media screen and (max-width: 1024px) {
             flex-direction: column;
         }

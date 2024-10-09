@@ -1,6 +1,8 @@
 <nav class="categories__breadcrumbs">
-    <a href="/" class="categories__link categories__link--breadcrumbs">
-        На головну
+    <a href="<?php echo esc_url(home_url('/')); ?>" class="categories__link categories__link--breadcrumbs">
+        <?php
+            echo pll__('Головна сторінка');
+        ?>
     </a>
     <svg class="categories__icon" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="18" height="18"
         fill="none" viewBox="0 0 24 24">

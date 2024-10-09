@@ -51,7 +51,11 @@
                 <?php
                     $article_content = get_the_content();
                     $reading_time_res = get_reading_time($article_content);
-                    echo "" . $reading_time_res . " хв.";
+                    $current_lang = function_exists('pll_current_language') ? pll_current_language() : 'uk';
+                    $minutes = ' min.';
+                    if ($current_lang == 'uk') $minutes = ' хв.';
+                    
+                    echo "" . $reading_time_res . $minutes;
                 ?>
             </div>
         </div>

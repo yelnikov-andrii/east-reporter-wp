@@ -30,7 +30,7 @@
                 </li>
                 <li class="footer__contact-item">
                     <p>
-                        <span>Телефон</span>:
+                        <span><?php echo pll__('Phone_str'); ?></span>:
                         <a href="<?php echo 'tel:' . esc_html($phone) ?>">
                             <?php echo esc_html($phone) ?>
                         </a>
@@ -59,7 +59,8 @@
                     </a>
                 </li>
                 <li>
-                    <a href="<?php echo esc_html($youtube) ?>" target="_blank" class="footer__social-media-link footer__social-media-link--youtube">
+                    <a href="<?php echo esc_html($youtube) ?>" target="_blank"
+                        class="footer__social-media-link footer__social-media-link--youtube">
                         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 365 256" width="42px">
                             <g>
                                 <g>

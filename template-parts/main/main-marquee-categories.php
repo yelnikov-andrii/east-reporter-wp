@@ -2,7 +2,8 @@
     <ul class="main-marquee__content">
         <?php
         $categories = get_categories(array(
-            'parent'=> '0'
+            'parent'=> '0',
+            'hide_empty' => true
         ));
         ?>
         <?php foreach ($categories as $category): ?>
