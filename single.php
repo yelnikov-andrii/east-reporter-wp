@@ -39,7 +39,17 @@
                 if (have_posts()):
                     while (have_posts()):
                         the_post(); ?>
-                        <?php if (has_category('interview')): ?>
+                        <?php
+                        $current_lang = function_exists('pll_current_language') ? pll_current_language() : 'uk';
+                        $category_slugs = array(
+                            'interview' => array(
+                                'uk' => 'interview',      // Украинский
+                                'en' => 'interview-en',     // Английский
+                                'de' => 'interview-de'      // Немецкий (пример)
+                            )
+                        );
+                        $interview_slug = isset($category_slugs['interview'][$current_lang]) ? $category_slugs['interview'][$current_lang] : 'interview';
+                        if (has_category($interview_slug)): ?>
                             <article id="post-<?php the_ID(); ?>" class="categories-article__article">
                                 <h1 class="categories-article__h1"><?php the_title(); ?></h1>
 
@@ -60,7 +70,7 @@
 
                                     <?php if ($video_id): ?>
                                         <div class="youtube-placeholder" data-video-id="<?php echo $video_id; ?>">
-                                            <img src="https://img.youtube.com/vi/<?php echo $video_id; ?>/hqdefault.jpg"
+                                            <img src="https://img.youtube.com/vi/<?php echo $video_id; ?>/maxresdefault.jpg"
                                                 alt="Video Thumbnail">
                                             <button class="youtube-play-button" aria-label="Відтворити відео">
                                                 <svg style="width: 100px; height: 100px" viewBox="0 0 1024 1024" version="1.1"
@@ -75,7 +85,9 @@
                                             </button>
                                         </div>
                                     <?php else: ?>
-                                        <p>Відео недоступне</p>
+                                        <p>
+                                            <?php echo pll__('Відео недоступне') ?>
+                                        </p>
                                     <?php endif; ?>
                                 </div>
 
@@ -160,7 +172,7 @@
                 if ($related_posts_query->have_posts()):
                     ?>
                     <h2 class="categories-article__h2">
-                        Пов'язані пости
+                        <?php echo pll__('Пов\'язані пости'); ?>
                     </h2>
                     <div class="categories-article__related related-posts">
                         <?php
@@ -170,6 +182,19 @@
                                 <?php
                                 if (has_post_thumbnail()) {
                                     the_post_thumbnail('medium', ['class' => 'categories-article__img']);
+                                } else {
+                                    $content = get_the_content();
+
+                                    // Ищем YouTube ссылку в контенте
+                                    preg_match('/(?:https?:\/\/)?(?:www\.)?(?:youtube\.com\/(?:[^\/\n\s]+\/\S+\/|(?:v|e(?:mbed)?)\/|.*[?&]v=)|youtu\.be\/)([^&\n]{11})/', $content, $matches);
+
+                                    $video_id = isset($matches[1]) ? esc_attr($matches[1]) : '';
+                                    if ($video_id) {
+                                        echo '<img src="https://img.youtube.com/vi/' . esc_attr($video_id) . '/maxresdefault.jpg" class="categories-article__img" alt="Video Thumbnail">';
+                                    } else {
+                                        echo '<img src="' . get_template_directory_uri() . '/assets/images/default-image.png" class="categories-article__img" alt="Default Image">';
+                                    }
+                                    
                                 }
                                 ?>
                                 <h2 class="categories-article__title related-posts__title">
@@ -188,8 +213,6 @@
 
             <?php get_template_part('/template-parts/common/aside'); ?>
         </div>
-    </div>
-
     </div>
 </main>
 

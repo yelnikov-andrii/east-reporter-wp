@@ -71,7 +71,7 @@
             display: none;
         }
 
-        @media screen and (max-width: 1024px) {
+        @media screen and (max-width: 1200px) {
             flex-direction: column;
         }
     }
@@ -80,7 +80,7 @@
         width: 68%;
         overflow-y: auto;
 
-        @media screen and (max-width: 1024px) {
+        @media screen and (max-width: 1200px) {
             width: 100%;
             margin: 0 0 64px 0;
         }
@@ -169,7 +169,7 @@
         min-height: 100vh;
         height: fit-content;
 
-        @media screen and (max-width: 1024px) {
+        @media screen and (max-width: 1200px) {
             width: 100%;
         }
     }

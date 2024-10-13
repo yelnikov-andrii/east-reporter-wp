@@ -31,6 +31,7 @@ if (function_exists('pll_register_string')) {
     pll_register_string('search_on_website', 'Пошук по сайту', 'Заголовки');
     pll_register_string('recent_news', 'Нещодавні новини', 'Заголовки');
     pll_register_string('categories', 'Категорії', 'Заголовки');
+    pll_register_string('related_posts', 'Пов\'язані пости', 'Заголовки');
 }
 
 

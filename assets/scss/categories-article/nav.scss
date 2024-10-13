@@ -5,7 +5,7 @@
 
     &__item {
         display: flex;
-        justify-content: space-between;
+        justify-content: center;
         align-items: center;
         width: 50%;
         padding: 16px;
@@ -31,7 +31,7 @@
         }
 
         @media screen and (max-width: 425px) {
-            padding: 4px;            
+            padding: 8px;            
         }
     }
 
@@ -56,8 +56,13 @@
         &--small {
             font-size: 18px;
 
+            @media screen and (max-width: 68px) {
+                font-weight: 500;
+            }
+
             @media screen and (max-width: 425px) {
-                font-size: 14px;    
+                font-size: 12px;
+                font-weight: 400;
             }
         }
     }

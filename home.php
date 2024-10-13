@@ -40,12 +40,6 @@
 
                             $video_id = isset($matches[1]) ? esc_attr($matches[1]) : '';
                         }
-
-
-                        // $pod = pods('main-video-frame');
-                        // $video_url = esc_url($pod->field('video'));
-                        // preg_match('/(?:https?:\/\/)?(?:www\.)?(?:youtube\.com\/(?:[^\/\n\s]+\/\S+\/|(?:v|e(?:mbed)?)\/|.*[?&]v=)|youtu\.be\/)([^&\n]{11})/', $video_url, $matches);
-                        // $video_id = isset($matches[1]) ? esc_attr($matches[1]) : '';
                     ?>
                     <div class="youtube-placeholder" data-video-id="<?php echo $video_id; ?>">
                         <?php if ($video_id): ?>

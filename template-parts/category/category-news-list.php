@@ -2,8 +2,9 @@
     <?php
     function get_reading_time($content)
     {
-        $word_count = str_word_count(strip_tags($content));
-        $reading_time = ceil($word_count / 180);
+        $cleaned_content = strip_tags($content);
+        $word_count = preg_match_all('/\b\w+\b/u', $cleaned_content, $matches);
+        $reading_time = ceil($word_count / 250);
         return max($reading_time, 1);
     }
     ?>

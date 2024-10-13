@@ -198,23 +198,21 @@ body.light-theme {
             color: var(--txt-color);
         }
 
-        @media screen and (min-width: 1024px) {
-            &:hover {
-                &>.header-list__link {
-                    color: var(--header-hover-color);
-                }
+        &:hover {
+            &>.header-list__link {
+                color: var(--header-hover-color);
+            }
 
-                & .header-list__svg {
-                    color: var(--header-hover-color);
-                }
+            & .header-list__svg {
+                color: var(--header-hover-color);
+            }
 
-                ~.dropdown {
-                    max-height: 400px;
-                    transform: scale(1);
+            ~.dropdown {
+                max-height: 400px;
+                transform: scale(1);
 
-                    @media screen and (max-width: 768px) {
-                        padding: 10px;
-                    }
+                @media screen and (max-width: 768px) {
+                    padding: 10px;
                 }
             }
         }
