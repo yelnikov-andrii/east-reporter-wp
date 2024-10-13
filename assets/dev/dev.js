@@ -10,11 +10,22 @@ const headerList = document.querySelector('.header-list');
 const headerWrapper = document.querySelector('.header__wrapper-list');
 
 toggleButton.addEventListener('click', () => {
-    console.log('menu clicked ----')
     headerList.classList.toggle('active');
     headerWrapper.classList.toggle('active');
     toggleButton.classList.toggle('active');
 });
+
+const headerListLinks = document.querySelectorAll('.header-list__link');
+
+if (headerListLinks.length) {
+  headerListLinks.forEach(el => {
+    el.addEventListener('click', () => {
+      headerList.classList.remove('active');
+      headerWrapper.classList.remove('active');
+      toggleButton.classList.remove('active');
+    })
+  })
+}
 
 // header list svg plus icon to open a dropdown
 

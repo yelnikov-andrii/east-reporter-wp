@@ -64,11 +64,22 @@
                 margin: 0;
                 padding: 0;
                 height: auto;
+
+                @media screen and (max-width: 425px) {
+                    width: 32px;
+                    height: 32px;
+                }
             }
 
             &--youtube {
                 svg {
                     width: 46px;
+                    height: 36px;
+
+                    @media screen and (max-width: 425px) {
+                        width: 42px;
+                        height: 32px;
+                    }
                 }
             }
         }
