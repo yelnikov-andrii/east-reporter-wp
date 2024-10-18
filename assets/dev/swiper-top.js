@@ -23,7 +23,6 @@ if (swiperEl) {
                 direction: 'vertical',
                 slidesPerView: 2,
                 slidesPerGroup: 2,
-                spaceBetween: 32,
                 autoHeight: true,
             },
         },

@@ -4,8 +4,6 @@
             the_post(); ?>
 
             <a class="anounces__item" href="<?php the_permalink(); ?>">
-                <div class="anounces__overlay"></div>
-
                 <?php if (has_post_thumbnail()): ?>
                     <img src="<?php the_post_thumbnail_url('full'); ?>" alt="<?php the_title(); ?>" class="anounces__img" />
                 <?php else: ?>

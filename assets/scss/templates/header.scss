@@ -85,7 +85,7 @@
                 right: 0;
                 top: 60px;
                 width: 100%;
-                box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+                box-shadow: 0 4px 8px var(--header-hover-color);
             }
         }
     }
@@ -256,7 +256,7 @@ body.light-theme {
     top: 100%;
     left: 0;
     background: var(--bg-color-main);
-    box-shadow: 0 8px 16px rgba(255, 255, 255, 0.2);
+    box-shadow: 0 8px 16px rgba(var(--txt-color-rgb), 0.1);
     list-style: none;
     padding: 10px;
     margin: 0;

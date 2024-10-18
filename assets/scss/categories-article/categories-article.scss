@@ -88,13 +88,13 @@
 
     &__article {
         background: var(--bg-color-main);
-        padding: 16px 32px;
+        padding: 64px 32px;
         border-radius: 4px;
         box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
         margin: 0 0 32px 0;
 
         @media screen and (max-width: 768px) {
-            padding: 8px 16px;
+            padding: 32px 16px;
         }
     }
 
@@ -117,10 +117,6 @@
         font-size: 32px;
         font-weight: 700;
         margin: 0 0 32px 0;
-
-        @media screen and (max-width: 768px) {
-            font-size: 28px;
-        }
     }
 
     &__h2 {

@@ -8,87 +8,88 @@
             <div class="main-top__search-box">
                 <?php get_search_form(); ?>
             </div>
+        </div>
 
-            <div class="main-top__block">
-                <div class="main-top__banner">
-                    <?php
-                        $current_lang = function_exists('pll_current_language') ? pll_current_language() : 'uk';
-
-                        // Задаем slugs для категорий на разных языках
-                        $category_slugs = array(
-                            'interview' => array(
-                                'uk' => 'interview',      // Украинский
-                                'en' => 'interview-en',     // Английский
-                                'de' => 'interview-de'      // Немецкий (пример)
-                            )
-                        );
-
-                        $interview_slug = isset($category_slugs['interview'][$current_lang]) ? $category_slugs['interview'][$current_lang] : $category_slugs['interview']['uk'];
-
-                        $interview_posts = get_posts(array(
-                            'category_name' => $interview_slug, // Используем slug для текущего языка
-                            'posts_per_page' => -1, // Получаем все посты категории
-                            'orderby' => 'rand',    // Сортировка случайным образом
-                        ));
-
-                        if ($interview_posts) {
-                            $random_post = $interview_posts[0];
-
-                            $random_post_content = $random_post->post_content;
-
-                            preg_match('/(?:https?:\/\/)?(?:www\.)?(?:youtube\.com\/(?:[^\/\n\s]+\/\S+\/|(?:v|e(?:mbed)?)\/|.*[?&]v=)|youtu\.be\/)([^&\n]{11})/', $random_post_content, $matches);
-
-                            $video_id = isset($matches[1]) ? esc_attr($matches[1]) : '';
-                        }
-                    ?>
-                    <div class="youtube-placeholder" data-video-id="<?php echo $video_id; ?>">
-                        <?php if ($video_id): ?>
-                            <img src="https://img.youtube.com/vi/<?php echo $video_id; ?>/maxresdefault.jpg"
-                                alt="Video Thumbnail">
-                            <button class="youtube-play-button" aria-label="Відтворити відео">
-                                <svg style="width: 100px; height: 100px" viewBox="0 0 1024 1024" version="1.1"
-                                    xmlns="http://www.w3.org/2000/svg">
-                                    <path
-                                        d="M658.2 523.8l-151.9 87.7c-31.6 18.2-71-4.6-71-41V395c0-36.4 39.5-59.2 71-41l151.9 87.7c31.5 18.4 31.5 63.9 0 82.1z"
-                                        fill="#025cc0" />
-                                    <path
-                                        d="M533.2 870c-217.2 0-394-176.7-394-394S316 82 533.2 82s394 176.7 394 394-176.8 394-394 394z m0-737.1C344 132.9 190.1 286.8 190.1 476S344 819.1 533.2 819.1 876.3 665.2 876.3 476 722.4 132.9 533.2 132.9z"
-                                        fill="#025cc0" />
-                                </svg>
-                            </button>
-                        <?php else: ?>
-                            <p>Відео недоступне</p>
-                        <?php endif; ?>
-                    </div>
-                </div>
+        <div class="main-top__block">
+            <div class="main-top__banner">
                 <?php
-                $current_lang = pll_current_language();
-                $category_slug = ($current_lang === 'en') ? 'news-en' : (($current_lang === 'de') ? 'news-de' : 'news');
-                $news_query = new WP_Query(array(
-                    'post_type' => 'post',
-                    'category_name' => $category_slug
+                $current_lang = function_exists('pll_current_language') ? pll_current_language() : 'uk';
+
+                // Задаем slugs для категорий на разных языках
+                $category_slugs = array(
+                    'interview' => array(
+                        'uk' => 'interview',      // Украинский
+                        'en' => 'interview-en',     // Английский
+                        'de' => 'interview-de'      // Немецкий (пример)
+                    )
+                );
+
+                $interview_slug = isset($category_slugs['interview'][$current_lang]) ? $category_slugs['interview'][$current_lang] : $category_slugs['interview']['uk'];
+
+                $interview_posts = get_posts(array(
+                    'category_name' => $interview_slug, // Используем slug для текущего языка
+                    'posts_per_page' => -1, // Получаем все посты категории
+                    'orderby' => 'rand',    // Сортировка случайным образом
                 ));
-                if ($news_query->have_posts()):
-                    echo '<div class="main-top__news swiper"><div class="swiper-wrapper">';
-                    while ($news_query->have_posts()):
-                        $news_query->the_post(); ?>
-                        <a class="main-top__news-card swiper-slide" href="<?php the_permalink(); ?>">
-                            <?php if (has_post_thumbnail()): ?>
-                                <?php the_post_thumbnail('large', array(
-                                    'class' => 'main-top__news-img',
-                                    'alt' => get_the_title(),
-                                    'title' => 'Thumbnail Image'
-                                )); ?>
-                            <?php else: ?>
-                                <img src="<?php echo get_template_directory_uri(); ?>/assets/images/default-image.png"
-                                    alt="Default Image" class="main-top__news-img" />
-                            <?php endif; ?>
-                            <h2 class="main-top__link">
-                                <?php the_title(); ?>
-                            </h2>
-                        </a>
-                    <?php endwhile; ?>
+
+                if ($interview_posts) {
+                    $random_post = $interview_posts[0];
+
+                    $random_post_content = $random_post->post_content;
+
+                    preg_match('/(?:https?:\/\/)?(?:www\.)?(?:youtube\.com\/(?:[^\/\n\s]+\/\S+\/|(?:v|e(?:mbed)?)\/|.*[?&]v=)|youtu\.be\/)([^&\n]{11})/', $random_post_content, $matches);
+
+                    $video_id = isset($matches[1]) ? esc_attr($matches[1]) : '';
+                }
+                ?>
+                <div class="youtube-placeholder" data-video-id="<?php echo $video_id; ?>">
+                    <?php if ($video_id): ?>
+                        <img src="https://img.youtube.com/vi/<?php echo $video_id; ?>/maxresdefault.jpg"
+                            alt="Video Thumbnail">
+                        <button class="youtube-play-button" aria-label="Відтворити відео">
+                            <svg style="width: 100px; height: 100px" viewBox="0 0 1024 1024" version="1.1"
+                                xmlns="http://www.w3.org/2000/svg">
+                                <path
+                                    d="M658.2 523.8l-151.9 87.7c-31.6 18.2-71-4.6-71-41V395c0-36.4 39.5-59.2 71-41l151.9 87.7c31.5 18.4 31.5 63.9 0 82.1z"
+                                    fill="#025cc0" />
+                                <path
+                                    d="M533.2 870c-217.2 0-394-176.7-394-394S316 82 533.2 82s394 176.7 394 394-176.8 394-394 394z m0-737.1C344 132.9 190.1 286.8 190.1 476S344 819.1 533.2 819.1 876.3 665.2 876.3 476 722.4 132.9 533.2 132.9z"
+                                    fill="#025cc0" />
+                            </svg>
+                        </button>
+                    <?php else: ?>
+                        <p>Відео недоступне</p>
+                    <?php endif; ?>
                 </div>
+            </div>
+            <?php
+            $current_lang = pll_current_language();
+            $category_slug = ($current_lang === 'en') ? 'news-en' : (($current_lang === 'de') ? 'news-de' : 'news');
+            $news_query = new WP_Query(array(
+                'post_type' => 'post',
+                'category_name' => $category_slug
+            ));
+            if ($news_query->have_posts()):
+                echo '<div class="main-top__news swiper"><div class="swiper-wrapper">';
+                while ($news_query->have_posts()):
+                    $news_query->the_post(); ?>
+                    <a class="main-top__news-card swiper-slide" href="<?php the_permalink(); ?>">
+                        <?php if (has_post_thumbnail()): ?>
+                            <?php the_post_thumbnail('large', array(
+                                'class' => 'main-top__news-img',
+                                'alt' => get_the_title(),
+                                'title' => 'Thumbnail Image'
+                            )); ?>
+                        <?php else: ?>
+                            <img src="<?php echo get_template_directory_uri(); ?>/assets/images/default-image.png"
+                                alt="Default Image" class="main-top__news-img" />
+                        <?php endif; ?>
+                        <h2 class="main-top__link">
+                            <?php the_title(); ?>
+                        </h2>
+                    </a>
+                <?php endwhile; ?>
+            </div>
             </div>
             <div class="swiper-navigation">
                 <button class="swiper-button swiper-button-prev" aria-label="Попередній слайд">
@@ -108,11 +109,9 @@
             </div>
             </div>
             <?php
-                endif;
-                wp_reset_postdata();
-                ?>
-        </div>
-
+            endif;
+            wp_reset_postdata();
+            ?>
         </div>
     </section>
 
@@ -170,7 +169,7 @@
                 <div>
                     <h2 class="main-important__title">
                         <?php
-                            echo pll__('Новини');
+                        echo pll__('Новини');
                         ?>
                     </h2>
 
@@ -208,7 +207,7 @@
                         if ($current_lang === 'en') {
                             echo 'Stay informed<br /> about all news from<br /><span class="main-important__span">East Reporter</span>';
                         } elseif ($current_lang === 'de') {
-                            echo 'Bleiben Sie informiert<br /> über alle Nachrichten aus<br /><span class="main-important__span">East Reporter</span>';
+                            echo 'Bleiben Sie informiert<br /> über alle Nachrichten von<br /><span class="main-important__span">East Reporter</span>';
                         } else {
                             // По умолчанию, например, для украинского языка
                             echo 'Будьте в курсі<br /> всіх новин з<br /><span class="main-important__span">East Reporter</span>';
