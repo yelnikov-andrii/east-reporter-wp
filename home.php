@@ -9,7 +9,6 @@
                 <?php get_search_form(); ?>
             </div>
         </div>
-
         <div class="main-top__block">
             <div class="main-top__banner">
                 <?php
