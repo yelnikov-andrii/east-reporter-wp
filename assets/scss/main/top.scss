@@ -162,6 +162,11 @@
         letter-spacing: 0.6px;
         margin: 4px 0 0 0;
         font-family: "Pobeda";
+        width: calc((100% - 60% - 8px));
+
+        @media screen and (max-width: 1200px) {
+            width: 100%;
+        }
 
         @media screen and (max-width: 425px) {
             font-size: 26px;
