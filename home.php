@@ -66,7 +66,8 @@
             $category_slug = ($current_lang === 'en') ? 'news-en' : (($current_lang === 'de') ? 'news-de' : 'news');
             $news_query = new WP_Query(array(
                 'post_type' => 'post',
-                'category_name' => $category_slug
+                'category_name' => $category_slug,
+                'posts_per_page' => 18
             ));
             if ($news_query->have_posts()):
                 echo '<div class="main-top__news swiper"><div class="swiper-wrapper">';

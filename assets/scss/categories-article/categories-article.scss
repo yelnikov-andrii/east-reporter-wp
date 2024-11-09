@@ -80,6 +80,12 @@
         width: 68%;
         overflow-y: auto;
 
+        a {
+            &:hover {
+                text-decoration: underline;
+            }
+        }
+
         @media screen and (max-width: 1200px) {
             width: 100%;
             margin: 0 0 64px 0;
@@ -180,6 +186,7 @@
 
     &__related {
         margin: 0 0 64px 0;
+        text-decoration: none;
     }
 
     &__form {
@@ -199,9 +206,12 @@
         }
     }
 
+}
+
+.categories-article__article-wrapper {
     a {
         &:hover {
-            text-decoration: underline;
+            text-decoration: none;
         }
     }
 }

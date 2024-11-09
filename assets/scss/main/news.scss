@@ -86,9 +86,12 @@
 
     &__category-list {
         display: flex;
-        gap: 8px;
         flex-wrap: wrap;
         align-items: center;
+
+        span {
+            margin: 0 4px 0 0;
+        }
 
         a {
             color: var(--link-color);

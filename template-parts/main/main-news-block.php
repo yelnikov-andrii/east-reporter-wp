@@ -37,7 +37,7 @@ if (isset($args['category_slug'])) {
                     </h3>
 
                     <div class="main-news__description">
-                        <p class="main-news__category-list"><?php echo get_the_category_list('<span>,</span> '); ?></p>
+                        <p class="main-news__category-list"><?php echo get_the_category_list('<span>, </span> '); ?></p>
                         <p><?php the_author(); ?></p>
                         <p><?php the_date(); ?></p>
                     </div>

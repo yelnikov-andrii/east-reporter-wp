@@ -49,3 +49,11 @@
         }
     }
 }
+
+.categories-article__related.related-posts {
+    a {
+        &:hover {
+            text-decoration: none;
+        }
+    }
+}
