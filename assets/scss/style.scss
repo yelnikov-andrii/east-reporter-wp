@@ -17,6 +17,7 @@
 @import './about/about.scss';
 @import './interview/interview.scss';
 @import './search/search.scss';
+@import './404/404.scss';
 
 body {
     @include set-theme(

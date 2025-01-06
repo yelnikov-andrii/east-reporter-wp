@@ -25,10 +25,16 @@ if (isset($args['category_slug'])) {
                 class="<?php echo $thumbnail_url ? 'main-news__article swiper-slide' : 'main-news__article swiper-slide main-news__article--no-image'; ?>">
                 <?php
                 if ($thumbnail_url): ?>
-                    <img src="<?php echo esc_url($thumbnail_url); ?>" class="main-news__img" alt="<?php the_title(); ?>" />
+                    <a href="<?php the_permalink(); ?>"><img src="<?php echo esc_url($thumbnail_url); ?>" class="main-news__img"
+                            alt="<?php the_title(); ?>" />
+                    </a>
+
                 <?php else: ?>
-                    <img src="<?php bloginfo('template_url'); ?>/assets/images/default-image.png" class="main-news__img"
-                        alt="Default image" />
+                    <a href="<?php the_permalink(); ?>">
+                        <img src="<?php bloginfo('template_url'); ?>/assets/images/default-image.png" class="main-news__img"
+                            alt="Default image" />
+                    </a>
+
                 <?php endif; ?>
 
                 <div>

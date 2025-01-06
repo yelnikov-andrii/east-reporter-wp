@@ -6,6 +6,10 @@
     justify-content: center;
     gap: 32px;
 
+    @media screen and (min-width: 1280px) {
+        min-height: 90vh;
+    }
+
     @media screen and (max-width: 1024px) {
         min-height: unset;
     }
@@ -43,6 +47,10 @@
         border-radius: 4px;
         margin: auto 0 0 0;
         padding: 0 30px;
+
+        @media screen and (min-width: 1280px) {
+            margin: 0;
+        }
 
         @media screen and (max-width: 1200px) {
             flex-direction: column;

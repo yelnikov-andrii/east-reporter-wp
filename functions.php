@@ -32,6 +32,8 @@ if (function_exists('pll_register_string')) {
     pll_register_string('recent_news', 'Нещодавні новини', 'Заголовки');
     pll_register_string('categories', 'Категорії', 'Заголовки');
     pll_register_string('related_posts', 'Пов\'язані пости', 'Заголовки');
+    pll_register_string('page_not_found', 'Сторінка не знайдена', 'Заголовки');
+
 }
 
 

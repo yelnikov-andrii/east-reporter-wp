@@ -56,12 +56,13 @@ window.addEventListener('scroll', function () {
 
 function scrollFunction() {
     const currentScrollY = window.scrollY; // Текущая позиция скролла
+    const windowHeight = window.innerHeight;
+    const documentHeight = document.documentElement.scrollHeight;
+    const isBottom = Math.ceil(currentScrollY + windowHeight) >= documentHeight;
 
-    if (currentScrollY > 800 && lastScrollY > currentScrollY) {
-        // Если скролл больше 300px и мы скроллим вверх
+    if (currentScrollY > 800 && (lastScrollY > currentScrollY || isBottom)) {
         scrollTopBtn.classList.add("visible");
     } else {
-        // Если скроллим вниз или меньше 300px
         scrollTopBtn.classList.remove("visible");
     }
 
