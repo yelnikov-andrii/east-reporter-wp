@@ -26,7 +26,7 @@ if (isset($args['category_slug'])) {
                 <?php
                 if ($thumbnail_url): ?>
                     <a class="main-news__link-img" href="<?php the_permalink(); ?>"><img src="<?php echo esc_url($thumbnail_url); ?>" class="main-news__img"
-                            alt="<?php the_title(); ?>" />
+                            alt="News image" />
                     </a>
 
                 <?php else: ?>

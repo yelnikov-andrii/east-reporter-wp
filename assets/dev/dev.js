@@ -2,6 +2,7 @@
 import swiper from './swiper-top.js';
 import * as swipers from './swipers-news.js';
 import { themeToggleButton } from './theme-toggler.js';
+
 import '../css/style.css';
 
 // toggle mobile menu
@@ -10,9 +11,9 @@ const headerList = document.querySelector('.header-list');
 const headerWrapper = document.querySelector('.header__wrapper-list');
 
 toggleButton.addEventListener('click', () => {
-    headerList.classList.toggle('active');
-    headerWrapper.classList.toggle('active');
-    toggleButton.classList.toggle('active');
+  headerList.classList.toggle('active');
+  headerWrapper.classList.toggle('active');
+  toggleButton.classList.toggle('active');
 });
 
 const headerListLinks = document.querySelectorAll('.header-list__link');
@@ -32,18 +33,14 @@ if (headerListLinks.length) {
 const svgPlusArr = document.querySelectorAll('.header-list__svg');
 
 for (let i = 0; i < svgPlusArr.length; i++) {
-    svgPlusArr[i].addEventListener('click', () => {
+  svgPlusArr[i].addEventListener('click', () => {
 
-        const listItem = svgPlusArr[i].closest('.header-list__item');
-        listItem.classList.toggle('active');
-        const dropdownEl = listItem.querySelector('.dropdown');
-        dropdownEl.classList.toggle('active');
-    })
+    const listItem = svgPlusArr[i].closest('.header-list__item');
+    listItem.classList.toggle('active');
+    const dropdownEl = listItem.querySelector('.dropdown');
+    dropdownEl.classList.toggle('active');
+  })
 }
-
-// AOS
-
-AOS.init();
 
 // scroll top button
 
@@ -51,47 +48,47 @@ const scrollTopBtn = document.querySelector('.button-scrolltop');
 let lastScrollY = window.scrollY;
 
 window.addEventListener('scroll', function () {
-    scrollFunction();
+  scrollFunction();
 });
 
 function scrollFunction() {
-    const currentScrollY = window.scrollY; // Текущая позиция скролла
-    const windowHeight = window.innerHeight;
-    const documentHeight = document.documentElement.scrollHeight;
-    const isBottom = Math.ceil(currentScrollY + windowHeight) >= documentHeight;
+  const currentScrollY = window.scrollY; // Текущая позиция скролла
+  const windowHeight = window.innerHeight;
+  const documentHeight = document.documentElement.scrollHeight;
+  const isBottom = Math.ceil(currentScrollY + windowHeight) >= documentHeight;
 
-    if (currentScrollY > 800 && (lastScrollY > currentScrollY || isBottom)) {
-        scrollTopBtn.classList.add("visible");
-    } else {
-        scrollTopBtn.classList.remove("visible");
-    }
+  if (currentScrollY > 800 && (lastScrollY > currentScrollY || isBottom)) {
+    scrollTopBtn.classList.add("visible");
+  } else {
+    scrollTopBtn.classList.remove("visible");
+  }
 
-    // Обновляем последнее значение скролла
-    lastScrollY = currentScrollY;
+  // Обновляем последнее значение скролла
+  lastScrollY = currentScrollY;
 }
 
 scrollTopBtn.addEventListener('click', () => {
-    window.scrollTo({ top: 0, behavior: 'smooth' });
-    scrollTopBtn.classList.remove('visible')
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+  scrollTopBtn.classList.remove('visible')
 });
 
 // Adjust min height of main section
 
 function adjustMainHeight() {
-    const header = document.querySelector('header');
-    const footer = document.querySelector('footer');
-    const main = document.querySelector('main');
+  const header = document.querySelector('header');
+  const footer = document.querySelector('footer');
+  const main = document.querySelector('main');
 
-    const headerHeight = header.offsetHeight;
-    const footerHeight = footer.offsetHeight;
+  const headerHeight = header.offsetHeight;
+  const footerHeight = footer.offsetHeight;
 
-    const totalHeight = window.innerHeight - headerHeight - footerHeight;
+  const totalHeight = window.innerHeight - headerHeight - footerHeight;
 
-    main.style.minHeight = `${totalHeight}px`;
+  main.style.minHeight = `${totalHeight}px`;
 }
 
 document.addEventListener('DOMContentLoaded',
-    adjustMainHeight);
+  adjustMainHeight);
 window.addEventListener('resize', adjustMainHeight);
 
 // input typing placeholder
@@ -140,21 +137,20 @@ function typeText() {
 // Lazyframe youtube
 
 document.querySelectorAll('.youtube-placeholder').forEach(placeholder => {
-    placeholder.addEventListener('click', function() {
-        console.log('click youtube placeholder');
-        const videoId = this.getAttribute('data-video-id');
-        const iframe = document.createElement('iframe');
-        iframe.setAttribute('src', `https://www.youtube.com/embed/${videoId}?autoplay=1`);
-        iframe.setAttribute('frameborder', '0');
-        iframe.setAttribute('allow', 'accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture');
-        iframe.setAttribute('allowfullscreen', '');
-        iframe.style.width = '100%';
-        iframe.style.height = '100%';
+  placeholder.addEventListener('click', function () {
+    const videoId = this.getAttribute('data-video-id');
+    const iframe = document.createElement('iframe');
+    iframe.setAttribute('src', `https://www.youtube.com/embed/${videoId}?autoplay=1`);
+    iframe.setAttribute('frameborder', '0');
+    iframe.setAttribute('allow', 'accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture');
+    iframe.setAttribute('allowfullscreen', '');
+    iframe.style.width = '100%';
+    iframe.style.height = '100%';
 
-        // Очистите плейсхолдер и добавьте iframe
-        this.innerHTML = '';
-        this.appendChild(iframe);
-    });
+    // Очистите плейсхолдер и добавьте iframe
+    this.innerHTML = '';
+    this.appendChild(iframe);
+  });
 });
 
 // langauge switcher 

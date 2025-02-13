@@ -43,10 +43,13 @@
                 ?>
                 <div class="youtube-placeholder" data-video-id="<?php echo $video_id; ?>">
                     <?php if ($video_id): ?>
-                        <img src="https://img.youtube.com/vi/<?php echo $video_id; ?>/maxresdefault.jpg"
-                            alt="Video Thumbnail">
+                        <img alt="Video Thumbnail"
+                            src="https://img.youtube.com/vi/<?php echo $video_id; ?>/maxresdefault.jpg" srcset="https://img.youtube.com/vi/<?php echo $video_id; ?>/maxresdefault.jpg 1280w,
+                            https://img.youtube.com/vi/<?php echo $video_id; ?>/hqdefault.jpg 640w,
+                            https://img.youtube.com/vi/<?php echo $video_id; ?>/sddefault.jpg 480w"
+                            fetchpriority="high" />
                         <button class="youtube-play-button" aria-label="Відтворити відео">
-                            <svg style="width: 100px; height: 100px" viewBox="0 0 1024 1024" version="1.1"
+                            <svg style="width: 80px; height: 80px" viewBox="0 0 1024 1024" version="1.1"
                                 xmlns="http://www.w3.org/2000/svg">
                                 <path
                                     d="M658.2 523.8l-151.9 87.7c-31.6 18.2-71-4.6-71-41V395c0-36.4 39.5-59.2 71-41l151.9 87.7c31.5 18.4 31.5 63.9 0 82.1z"
@@ -73,16 +76,36 @@
                 echo '<div class="main-top__news swiper"><div class="swiper-wrapper">';
                 while ($news_query->have_posts()):
                     $news_query->the_post(); ?>
-                    <a class="main-top__news-card swiper-slide" href="<?php the_permalink(); ?>">
+                    <a class="swiper-slide main-top__news-card" href="<?php the_permalink(); ?>">
                         <?php if (has_post_thumbnail()): ?>
-                            <?php the_post_thumbnail('large', array(
-                                'class' => 'main-top__news-img',
-                                'alt' => get_the_title(),
-                                'title' => 'Thumbnail Image'
-                            )); ?>
-                        <?php else: ?>
-                            <img src="<?php echo get_template_directory_uri(); ?>/assets/images/default-image.png"
-                                alt="Default Image" class="main-top__news-img" />
+                            <?php
+                            // Получаем ID миниатюры
+                            $thumbnail_id = get_post_thumbnail_id();
+
+                            // Получаем изображения для src и srcset
+                            $thumbnail_src_large = wp_get_attachment_image_src($thumbnail_id, 'large')[0];
+                            $thumbnail_srcset_medium = wp_get_attachment_image_srcset($thumbnail_id, 'medium');
+                            $thumbnail_srcset_small = wp_get_attachment_image_srcset($thumbnail_id, 'small');
+
+                            // Получаем размеры для sizes
+                            $thumbnail_sizes_medium = wp_get_attachment_image_sizes($thumbnail_id, 'medium');
+                            $thumbnail_sizes_small = wp_get_attachment_image_sizes($thumbnail_id, 'small');
+                            ?>
+                            <img 
+                                src="<?php echo $thumbnail_src_large; ?>" 
+                                srcset="
+                                <?php echo $thumbnail_srcset_small; ?> 480w, 
+                                <?php echo $thumbnail_srcset_medium; ?> 768w, 
+                                <?php echo $thumbnail_src_large; ?> 1024w
+                                " sizes="(max-width: 480px) <?php echo $thumbnail_sizes_small; ?>,                
+                                (max-width: 768px) <?php echo $thumbnail_sizes_medium; ?>, 
+                                1024px" alt="Post image" class="main-top__news-img" fetchpriority="high" />
+                                <?php else: ?>
+                            <img src="<?php echo get_template_directory_uri(); ?>/assets/images/default-image.png" srcset="<?php echo get_template_directory_uri(); ?>/assets/images/default-image.png 480w,
+                                <?php echo get_template_directory_uri(); ?>/assets/images/default-image.png 800w,
+                                <?php echo get_template_directory_uri(); ?>/assets/images/default-image.png 1280w"
+                                sizes="(max-width: 600px) 480px, (max-width: 1200px) 800px, 1280px" alt="Default Image"
+                                class="main-top__news-img" fetchpriority="high" loading="eager" decoding="sync" />
                         <?php endif; ?>
                         <h2 class="main-top__link">
                             <?php the_title(); ?>
@@ -139,12 +162,11 @@
                 ?>
 
 
-                <h2 class="main-news__title" data-aos="fade-up">
+                <h2 class="main-news__title">
                     <?php echo esc_html($category->name); ?>
                 </h2>
 
-                <div class="swiper-news-<?php echo $coefficient; ?> main-news__block main-news__block--margin"
-                    data-aos="fade-up">
+                <div class="swiper-news-<?php echo $coefficient; ?> main-news__block main-news__block--margin">
                     <?php
                     $category_slug = $category->slug;
                     get_template_part('template-parts/main/main-news-block', null, array('category_slug' => $category_slug));
@@ -200,7 +222,7 @@
                 </div>
             </aside>
             <div class="main-important__banner" data-aos="fade-right">
-                <h5>
+                <h3>
                     <?php
                     if (function_exists('pll_current_language')) {
                         // В зависимости от текущего языка выводим соответствующий текст
@@ -217,7 +239,7 @@
                         echo 'Будьте в курсі<br /> всіх новин з<br /><span class="main-important__span">East Reporter</span>';
                     }
                     ?>
-                </h5>
+                </h3>
             </div>
         </div>
     </section>

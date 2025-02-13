@@ -46,7 +46,7 @@ Template Name: Anounces
                     $anounces_query->the_post(); ?>
                     <a class="anounces__item" href="<?php the_permalink(); ?>">
                         <?php if (has_post_thumbnail()): ?>
-                            <img src="<?php the_post_thumbnail_url('full'); ?>" class="anounces__img" alt="<?php the_title(); ?>" />
+                            <img src="<?php the_post_thumbnail_url('full'); ?>" class="anounces__img" alt="Anounce image" />
                         <?php else: ?>
                             <img src="<?php bloginfo('template_url'); ?>/assets/images/default-image.png" class="anounces__img"
                                 alt="Default image" />

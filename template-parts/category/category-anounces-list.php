@@ -5,7 +5,7 @@
 
             <a class="anounces__item" href="<?php the_permalink(); ?>">
                 <?php if (has_post_thumbnail()): ?>
-                    <img src="<?php the_post_thumbnail_url('full'); ?>" alt="<?php the_title(); ?>" class="anounces__img" />
+                    <img src="<?php the_post_thumbnail_url('full'); ?>" alt="Post image" class="anounces__img" />
                 <?php else: ?>
                     <img src="<?php echo get_template_directory_uri(); ?>/assets/images/default-image.png" alt="Default image"
                         class="anounces__img" />

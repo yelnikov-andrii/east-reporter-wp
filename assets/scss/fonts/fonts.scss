@@ -1,12 +1,14 @@
 @font-face {
     font-family: 'Pobeda';
     src: url('../fonts/pobeda-regular.ttf') format('truetype');
+    font-display: swap;
 }
 
 @font-face {
     font-family: 'Pobeda Bold';
     font-weight: bold;
     font-style: bold;
+    font-display: swap;
     src: url('../fonts/pobeda-bold.ttf') format('truetype'),
         url('../fonts/pobeda-bold.otf') format('opentype'),
         url('../fonts/pobeda-bold.woff') format('woff'),
@@ -17,6 +19,7 @@
     font-family: 'Namu';
     font-weight: normal;
     font-style: normal;
+    font-display: swap;
     src:    url('../fonts/namu-1850.ttf') format('truetype'),
             url('../fonts/namu-1850.otf') format('opentype'),
             url('../fonts/namu-1850.woff2') format('woff2'),
